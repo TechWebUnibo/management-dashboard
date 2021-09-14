@@ -1,0 +1,36 @@
+version: 2.1
+jobs:
+  build:
+    docker:
+      - image: circleci/node:10-browsers
+    steps:
+      - checkout
+      - add_ssh_keys:
+          fingerprints:
+            - "5e:b7:a8:8c:9b:16:ef:87:f4:6d:9a:11:5e:d8:da:10"
+      - run:
+          name: Github config
+          command: |
+            git config user.email "antonio.lopez.8523@gmail.com"
+            git config user.name "elements72"
+      - run:
+          name: Build project
+          command: |
+            npm run build
+      - run:
+          name: Deploy
+          command: | 
+            ssh-keyscan -H ines.cs.unibo.it >> ~/.ssh/known_hosts
+            scp -r dist/html antonio.lopez2@ines.cs.unibo.it:/home/web/site202118/html/public/html/
+            scp -r dist/css antonio.lopez2@ines.cs.unibo.it:/home/web/site202118/html/public/css/
+            scp -r dist/js antonio.lopez2@ines.cs.unibo.it:/home/web/site202118/html/public/js/
+
+
+workflows:
+  version: 2
+  build-deploy:
+    jobs:
+      - build:
+          filters:
+            branches:
+              only: develop
