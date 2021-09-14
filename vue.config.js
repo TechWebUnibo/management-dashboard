@@ -2,7 +2,7 @@ const path = require("path");
 
 module.exports = {
   outputDir: path.resolve(__dirname,
-    "dist/public"),
+    "dist"),
   indexPath: 'html/index.html',
   publicPath: '/public',
   css: {
