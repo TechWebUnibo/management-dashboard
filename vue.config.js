@@ -3,7 +3,7 @@ const path = require("path");
 module.exports = {
   outputDir: path.resolve(__dirname,
     "dist"),
-  indexPath: 'html/index.html',
+  indexPath: 'html/management-dashboard/index.html',
   publicPath: '/public',
   css: {
     extract: {
