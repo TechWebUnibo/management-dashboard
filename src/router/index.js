@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
+import Dashboard from '../views/Dashboard.vue'
+import { isLogged } from  '../utility/auth'
 
 Vue.use(VueRouter)
 
@@ -9,6 +11,12 @@ const routes = [
     path: '/',
     name: 'Home',
     component: Home
+  },
+  {
+    path: '/Dashboard',
+    name: 'Dashboard',
+    component: Dashboard,
+    meta: { requiresAuth: true }
   },
   {
     path: '/about',
@@ -24,6 +32,17 @@ const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
   routes
+})
+
+
+router.beforeEach(async (to, from, next) => {
+  if(to.matched.some(record => record.meta.requiresAuth))
+    if(await isLogged())
+      next()
+    else
+      next({name: 'Home'})
+  else
+    next()
 })
 
 export default router

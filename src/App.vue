@@ -1,7 +1,7 @@
 <template>
 <div>
     <header>
-      <Navbar :navItems="navItems" />
+      <Navbar :navItems="$route.path !== '/' ? fullNavItems : basicNavItems"  />
     </header>
     <main>
       <router-view />
@@ -20,15 +20,22 @@ export default {
   },
       data: function () {
       return {
-        navItems: []
+        basicNavItems: [],
+        fullNavItems: []
     }
   },
   created() {
-    this.navItems = [
-      { id: 2, text: 'Admin Page', link: '/admin'},
-      { id: 1, text: 'About', link: '/about' }
+    this.basicNavItems = [
+      { id: 1, text: 'About', link: '/about' },
+      { id: 2, text: 'Admin Page', link: '/admin'}
     ]
-  } 
+    this.fullNavItems = this.basicNavItems.concat([
+      { id: 3, text: 'Customers', link: '/customers'},
+      { id: 4, text: 'Rental', link: '/rental' },
+      { id: 5, text: 'Staff', link: '/staff'},
+      { id: 6, text: 'Items', link: '/Items' }
+    ])
+  }
 }
 </script>
 
