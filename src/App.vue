@@ -1,32 +1,55 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
-  </div>
+<div>
+    <header>
+      <Navbar :navItems="navItems" />
+    </header>
+    <main>
+      <router-view />
+    </main>
+</div>
 </template>
 
+
+<script>
+import Navbar from '@/components/Navbar.vue'
+
+export default {
+  name: 'App',
+  components: {
+    Navbar
+  },
+      data: function () {
+      return {
+        navItems: []
+    }
+  },
+  created() {
+    this.navItems = [
+      { id: 2, text: 'Admin Page', link: '/admin'},
+      { id: 1, text: 'About', link: '/about' }
+    ]
+  } 
+}
+</script>
+
 <style lang="scss">
+
+@import "@/scss/variables.scss";
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
 }
 
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
+ul{
+  text-decoration: none;
 }
+
+a {
+  color: black;
+  text-decoration: none;
+  font-family: $primary-font;
+}
+
 </style>

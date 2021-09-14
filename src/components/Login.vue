@@ -1,0 +1,96 @@
+<template>
+    <div class="login">
+        <h1>Welcome to the manager's page</h1>
+        <h2>Please login</h2>
+        <form @submit.prevent="login"> 
+        <div class="mb-3">
+            <label for="username" class="form-label">Username</label>
+            <input type="text" class="form-control" id="username" v-model="username" required>
+            <small id="usernameHelp" class="form-text" :class="{'text-danger': usernameHelp.triggered}">{{usernameHelp.text}}</small>
+        </div>
+        <div class="mb-3">
+            <label for="password" class="form-label">Password</label>
+            <input type="password" class="form-control" id="password" v-model="password" required>
+            <small id="passwordHelp" class="form-text" :class="{'text-danger': passwordHelp.triggered}">{{passwordHelp.text}}</small>
+        </div>
+        <div class="d-flex">
+            <button type="submit" class="btn btn-primary" aria-label="Login" >Login</button>
+            <button type="reset" class="btn btn-danger" aria-label="Reset">Reset</button>
+        </div>
+        </form>
+    </div>
+</template>
+
+<script>
+export default {
+    name: 'Login',
+    data: function(){
+        return {
+            username: '',
+            password: '',
+            url: '//site202118.tw.cs.unibo.it/api/login/staff',
+            usernameHelp: {
+                text: 'Insert here your username',
+                triggered: false
+            },
+            passwordHelp: {
+                text: 'Insert here your password',
+                triggered: false
+            }
+        }
+    },
+    methods:{
+        login() {
+                this.resetHelp()
+                fetch(this.url, {
+                method: 'POST',
+                mode: 'cors', // no-cors, *cors, same-origin
+                headers: {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin' : '*'
+                },
+                body: JSON.stringify({username: this.username, password: this.password}) // body data type must match "Content-Type" header
+            })
+            .then((res) =>{
+                if(res.status === 404){
+                    this.usernameHelp.text = 'Wrong username'
+                    this.usernameHelp.triggered = true
+                }
+                else if(res.status === 403){
+                    this.passwordHelp.text = 'Wrong password'
+                    this.passwordHelp.triggered = true
+                }
+            })
+            .catch(() =>{
+            })
+        },
+        resetHelp(){
+            this.usernameHelp.triggered = false
+            this.passwordHelp.triggered = false
+            this.usernameHelp.text = 'Insert here your username'
+            this.passwordHelp.text = 'Insert here your password'
+        }
+    }
+}   
+</script>
+
+<style lang="scss" scoped>
+    .login{
+        text-align: left;
+        width: 70%;
+        max-width: 600px;
+        margin: auto;
+        margin-top: 2em;
+        padding: 1em;
+    }
+    .login h1, h2{
+        text-align: center;
+        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    }
+    .login h1{
+        font-size: 2rem;
+    }
+    .login h2{
+        font-size: 1.5rem;
+    }
+</style>
