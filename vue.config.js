@@ -4,7 +4,6 @@ module.exports = {
   outputDir: path.resolve(__dirname,
     "dist"),
   indexPath: 'html/management-dashboard/index.html',
-  publicPath: '/public',
   css: {
     extract: {
       filename: 'css/management-dashboard/[name].[hash:8].css',
