@@ -55,7 +55,7 @@ export default {
                 this.passwordHelp.triggered = true
             }
             else{
-                this.$router.push('/Dashboard')
+                this.$router.push('/management-dashboard/dashboard')
             }
         },
         resetHelp(){
@@ -67,7 +67,7 @@ export default {
     },
     async created(){
         if(await isLogged())
-            this.$router.push('/Dashboard')
+            this.$router.push('/management-dashboard/dashboard')
     }
 }   
 </script>

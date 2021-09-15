@@ -1,7 +1,7 @@
 <template>
 <div>
     <header>
-      <Navbar :navItems="$route.path !== baseUrl ? fullNavItems : basicNavItems"  />
+      <Navbar :navItems="authenticated ? basicNavItems : fullNavItems"  />
     </header>
     <main>
       <router-view />
@@ -12,6 +12,7 @@
 
 <script>
 import Navbar from '@/components/Navbar.vue'
+import { refreshPublicKey } from "./utility/auth";
 
 export default {
   name: 'App',
@@ -20,12 +21,13 @@ export default {
   },
       data: function () {
       return {
-        baseUrl: '/management-dashboard',
+        baseUrl: ['/management-dashboard', '/management-dashboard/'],
         basicNavItems: [],
         fullNavItems: []
     }
   },
-  created() {
+  async created() {
+    await refreshPublicKey()
     this.basicNavItems = [
       { id: 1, text: 'About', link: '/about' },
       { id: 2, text: 'Admin Page', link: '/admin'}

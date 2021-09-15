@@ -1,7 +1,11 @@
+
+const jwt = require('jsonwebtoken')
 const ACCESS_TOKEN_KEY = 'access_token'
-const BASE_URL = '//site202118.tw.cs.unibo.it/api/login'
-const MANAGER_LOGIN = BASE_URL + '/staff'
-const MANAGER_AUTH = MANAGER_LOGIN + '/authenticated'
+const PUBLICKEY_KEY = 'publicKey'
+const BASE_URL = '//localhost:8000/api/auth'
+const MANAGER_LOGIN = BASE_URL + '/login/staff'
+const PUBLICKEY_URL = BASE_URL + '/publicKey'
+//const MANAGER_AUTH = MANAGER_LOGIN + '/authenticated'
 
 export async function login(username, password){
             let res = await fetch(MANAGER_LOGIN, {
@@ -21,6 +25,29 @@ export async function login(username, password){
             return status
         }
 
+
+export async function refreshPublicKey() {
+    let res = await fetch(PUBLICKEY_URL, {
+        method: 'GET',
+        mode: 'cors', // no-cors, *cors, same-origin
+        headers: {
+            'Access-Control-Allow-Origin': '*'
+        },
+    })
+    let status = res.status
+    res = await res.json()
+    if (status === 200) {
+        localStorage[PUBLICKEY_KEY] = res.publicKey
+    }
+}
+
+async function getPublicKey() {
+    if (!localStorage[PUBLICKEY_KEY] || localStorage[PUBLICKEY_KEY] === 'undefined'){
+        await refreshPublicKey()
+    }
+    return localStorage[PUBLICKEY_KEY]
+}
+
 function setToken(token){
     localStorage[ACCESS_TOKEN_KEY] = token
 }
@@ -34,6 +61,7 @@ function clearToken()  {
 }*/
 
 export async function isLogged(){
+    /*
     let res = await fetch(MANAGER_AUTH, {
         method: 'GET',
         mode: 'cors', // no-cors, *cors, same-origin
@@ -47,4 +75,14 @@ export async function isLogged(){
         return false
     else
         return true
+        */
+    try{
+        console.log(jwt.verify(getToken(), await getPublicKey(), { algorithm: 'RS256' }))
+        localStorage['authenticated'] = true
+        return true
+    }
+    catch(err){
+        localStorage['authenticated'] = false
+        return false
+    }
 }

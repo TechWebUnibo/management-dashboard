@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
+import NotFound from '../views/NotFound.vue'
 import Dashboard from '../views/Dashboard.vue'
 import { isLogged } from  '../utility/auth'
 
@@ -13,7 +14,7 @@ const routes = [
     component: Home
   },
   {
-    path: '/management-dashboard/Dashboard',
+    path: '/management-dashboard/dashboard',
     name: 'Dashboard',
     component: Dashboard,
     meta: { requiresAuth: true }
@@ -25,6 +26,11 @@ const routes = [
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
+  },
+  {
+    path: '/:catchAll(.*)',
+    name: 'NotFound',
+    component: NotFound
   }
 ]
 
