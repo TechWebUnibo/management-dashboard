@@ -2,7 +2,7 @@
     <div class="login">
         <h1>Welcome to the manager's page</h1>
         <h2>Please login</h2>
-        <form @submit.prevent="login"> 
+        <form @submit.prevent="signIn"> 
         <div class="mb-3">
             <label for="username" class="form-label">Username</label>
             <input type="text" class="form-control" id="username" v-model="username" required>
@@ -22,6 +22,9 @@
 </template>
 
 <script>
+
+import { login, isLogged } from '../utility/auth';
+
 export default {
     name: 'Login',
     data: function(){
@@ -40,29 +43,20 @@ export default {
         }
     },
     methods:{
-        login() {
-                this.resetHelp()
-                fetch(this.url, {
-                method: 'POST',
-                mode: 'cors', // no-cors, *cors, same-origin
-                headers: {
-                'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin' : '*'
-                },
-                body: JSON.stringify({username: this.username, password: this.password}) // body data type must match "Content-Type" header
-            })
-            .then((res) =>{
-                if(res.status === 404){
-                    this.usernameHelp.text = 'Wrong username'
-                    this.usernameHelp.triggered = true
-                }
-                else if(res.status === 403){
-                    this.passwordHelp.text = 'Wrong password'
-                    this.passwordHelp.triggered = true
-                }
-            })
-            .catch(() =>{
-            })
+        async signIn() {
+            this.resetHelp()
+            let status = await login(this.username, this.password)
+            if(status === 404){
+                this.usernameHelp.text = 'Wrong username'
+                this.usernameHelp.triggered = true
+            }
+            else if(status === 403){
+                this.passwordHelp.text = 'Wrong password'
+                this.passwordHelp.triggered = true
+            }
+            else{
+                this.$router.push('/management-dashboard/dashboard')
+            }
         },
         resetHelp(){
             this.usernameHelp.triggered = false
@@ -70,6 +64,10 @@ export default {
             this.usernameHelp.text = 'Insert here your username'
             this.passwordHelp.text = 'Insert here your password'
         }
+    },
+    async created(){
+        if(await isLogged())
+            this.$router.push('/management-dashboard/dashboard')
     }
 }   
 </script>

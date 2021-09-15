@@ -32,7 +32,6 @@ export default {
         toggleSidebar(){
             let sidebar = document.getElementById('sidebar')
             let toggles = document.getElementsByClassName('sidebar-toggle')
-            console.log(getComputedStyle(sidebar).width)
             if(getComputedStyle(sidebar).width === '0px'){
                 sidebar.classList.add('sidebar-toggled')
                 for (const toggle of toggles) {
