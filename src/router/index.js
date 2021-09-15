@@ -8,18 +8,18 @@ Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '/',
+    path: '/management-dashboard',
     name: 'Home',
     component: Home
   },
   {
-    path: '/Dashboard',
+    path: '/management-dashboard/Dashboard',
     name: 'Dashboard',
     component: Dashboard,
     meta: { requiresAuth: true }
   },
   {
-    path: '/about',
+    path: '/management-dashboard/about',
     name: 'About',
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route

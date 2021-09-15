@@ -1,7 +1,7 @@
 <template>
 <div>
     <header>
-      <Navbar :navItems="$route.path !== '/' ? fullNavItems : basicNavItems"  />
+      <Navbar :navItems="$route.path !== baseUrl ? fullNavItems : basicNavItems"  />
     </header>
     <main>
       <router-view />
@@ -20,6 +20,7 @@ export default {
   },
       data: function () {
       return {
+        baseUrl: '/management-dashboard',
         basicNavItems: [],
         fullNavItems: []
     }
