@@ -78,11 +78,9 @@ export async function isLogged(){
         */
     try{
         console.log(jwt.verify(getToken(), await getPublicKey(), { algorithm: 'RS256' }))
-        localStorage['authenticated'] = true
         return true
     }
     catch(err){
-        localStorage['authenticated'] = false
         return false
     }
 }

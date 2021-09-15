@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
-import persistentStorage from 'vue-persistent-state';
 
 // Font Awesome
 import { library } from '@fortawesome/fontawesome-svg-core'
@@ -23,11 +22,6 @@ Vue.use(BootstrapVue)
 // Optionally install the BootstrapVue icon components plugin
 Vue.use(IconsPlugin)
 
-const initialState = {
-  authenticated: false,
-};
-
-Vue.use(persistentStorage, initialState);
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 

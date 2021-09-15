@@ -1,10 +1,10 @@
 <template>
 <div>
     <header>
-      <Navbar :navItems="authenticated ? basicNavItems : fullNavItems"  />
+      <Navbar :navItems="authenticated ? fullNavItems : basicNavItems"  />
     </header>
     <main>
-      <router-view />
+      <router-view @userLogged="authenticated = true" />
     </main>
 </div>
 </template>
@@ -12,7 +12,7 @@
 
 <script>
 import Navbar from '@/components/Navbar.vue'
-import { refreshPublicKey } from "./utility/auth";
+import { refreshPublicKey, isLogged } from "./utility/auth";
 
 export default {
   name: 'App',
@@ -23,10 +23,12 @@ export default {
       return {
         baseUrl: ['/management-dashboard', '/management-dashboard/'],
         basicNavItems: [],
-        fullNavItems: []
+        fullNavItems: [],
+        authenticated: false
     }
   },
   async created() {
+    this.authenticated = await isLogged()
     await refreshPublicKey()
     this.basicNavItems = [
       { id: 1, text: 'About', link: '/about' },
@@ -38,7 +40,7 @@ export default {
       { id: 5, text: 'Staff', link: '/staff'},
       { id: 6, text: 'Items', link: '/Items' }
     ])
-  }
+  },
 }
 </script>
 

@@ -1,6 +1,6 @@
 <template>
 <div>
-  <Login/>
+  <Login @userLogged="$emit('userLogged')"/>
 </div>
 </template>
 

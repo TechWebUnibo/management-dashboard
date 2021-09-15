@@ -55,6 +55,7 @@ export default {
                 this.passwordHelp.triggered = true
             }
             else{
+                this.$emit('userLogged')
                 this.$router.push('/management-dashboard/dashboard')
             }
         },
