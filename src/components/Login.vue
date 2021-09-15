@@ -67,7 +67,7 @@ export default {
     },
     async created(){
         if(await isLogged())
-            this.$router.push('/management-dashboard/dashboard')
+            this.$router.push({name: 'Dashboard'})
     }
 }   
 </script>
