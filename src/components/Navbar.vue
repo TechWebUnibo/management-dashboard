@@ -9,7 +9,7 @@
         </button>
         <div id='sidebar' class="sidebar-hidden">
             <button class="sidebar-toggle" @click="toggleSidebar" aria-controls="sidebar" aria-expanded="true" aria-label="Toggle navigation"><font-awesome-icon :icon="['fas', 'arrow-left']" /></button>
-            <ul class="p-0">
+            <ul class="p-1">
                 <NavItem  v-for='navItem in navItems' :key='navItem.id' :navItem='navItem' />
             </ul>
         </div>
@@ -52,9 +52,7 @@ export default {
 
 <style lang="scss" scoped>
   @import "@/scss/variables.scss";
-  @import "node_modules/bootstrap/scss/functions";
-  @import "node_modules/bootstrap/scss/variables";
-  @import "node_modules/bootstrap/scss/mixins/_breakpoints";
+
 
 .nav{
     display: flex;
@@ -84,12 +82,12 @@ export default {
     height: 100%;
     top: 0;
     left: 0;
-    overflow-x: hidden; /* Disable horizontal scroll */   
+    overflow-x: hidden; 
     display: flex;
     flex-flow: column;
     justify-content: flex-start;
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Stay on top */
+    position: fixed;
+    z-index: 1; 
   }
 
 .sidebar-toggle{
@@ -102,7 +100,7 @@ export default {
     max-width: 300px;
     background: $primary-color;
     background-color: #F5EDDD;
-    transition: 0.5s; 
+    transition: 0.2s; 
 }
 
 .sidebar-toggled button {

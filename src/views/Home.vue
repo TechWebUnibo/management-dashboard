@@ -1,5 +1,5 @@
 <template>
-<div>
+<div id='Home'>
   <Login @userLogged="$emit('userLogged')"/>
 </div>
 </template>
@@ -15,3 +15,12 @@ export default {
   }, 
 }
 </script>
+
+
+<style lang="scss" scoped>
+
+  #Home{
+    padding-top: 2em;
+  }
+
+</style>
