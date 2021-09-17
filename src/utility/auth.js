@@ -2,7 +2,7 @@
 const jwt = require('jsonwebtoken')
 const ACCESS_TOKEN_KEY = 'access_token'
 const PUBLICKEY_KEY = 'publicKey'
-const BASE_URL = '//localhost:8000/api/auth'
+const BASE_URL = '//site202118.tw.cs.unibo.it/api/auth'
 const MANAGER_LOGIN = BASE_URL + '/login/staff'
 const PUBLICKEY_URL = BASE_URL + '/publicKey'
 //const MANAGER_AUTH = MANAGER_LOGIN + '/authenticated'
