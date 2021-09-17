@@ -1,5 +1,5 @@
 <template>
-    <div class="login">
+    <div id="login">
         <h1>Welcome to the manager's page</h1>
         <h2>Please login</h2>
         <form @submit.prevent="signIn"> 
@@ -74,22 +74,24 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-    .login{
+    #login{
         text-align: left;
         width: 70%;
         max-width: 600px;
         margin: auto;
-        margin-top: 2em;
-        padding: 1em;
+        padding: 3em;
+        height: 100%;
+        background-color: white;
+        border-radius: 5px;
     }
-    .login h1, h2{
+    #login h1, h2{
         text-align: center;
         font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     }
-    .login h1{
+    #login h1{
         font-size: 2rem;
     }
-    .login h2{
+    #login h2{
         font-size: 1.5rem;
     }
 </style>

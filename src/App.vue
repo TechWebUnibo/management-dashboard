@@ -1,9 +1,9 @@
 <template>
-<div>
+<div id="App">
     <header>
       <Navbar :navItems="authenticated ? fullNavItems : basicNavItems"  />
     </header>
-    <main>
+    <main class="container">
       <router-view @userLogged="authenticated = true" />
     </main>
 </div>
@@ -21,7 +21,7 @@ export default {
   },
       data: function () {
       return {
-        baseUrl: ['/management-dashboard', '/management-dashboard/'],
+        baseUrl: '/management-dashboard',
         basicNavItems: [],
         fullNavItems: [],
         authenticated: false
@@ -35,10 +35,10 @@ export default {
       { id: 2, text: 'Admin Page', link: '/admin'}
     ]
     this.fullNavItems = this.basicNavItems.concat([
-      { id: 3, text: 'Customers', link: '/customers'},
-      { id: 4, text: 'Rental', link: '/rental' },
-      { id: 5, text: 'Staff', link: '/staff'},
-      { id: 6, text: 'Items', link: '/Items' }
+      { id: 3, text: 'Customers', link: this.baseUrl + '/customers'},
+      { id: 4, text: 'Rental', link: this.baseUrl +  '/rental' } ,
+      { id: 5, text: 'Staff', link: this.baseUrl +  '/staff'},
+      { id: 6, text: 'Items', link: this.baseUrl +  '/items' }
     ])
   },
 }
@@ -54,6 +54,14 @@ export default {
   -moz-osx-font-smoothing: grayscale;
 }
 
+h1{
+  font-family: $primary-font;
+}
+
+#App{
+  //background-color: $bg-color;
+}
+
 ul{
   text-decoration: none;
 }
@@ -62,6 +70,12 @@ a {
   color: black;
   text-decoration: none;
   font-family: $primary-font;
+}
+
+main{
+  margin-top: 1em;
+  background-color: white;
+  height: 100%;
 }
 
 </style>
