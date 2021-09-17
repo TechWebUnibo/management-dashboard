@@ -28,7 +28,7 @@ jobs:
             scp -r dist/html/management-dashboard antonio.lopez2@ines.cs.unibo.it:/home/web/site202118/html/public/html/
             scp -r dist/css/management-dashboard antonio.lopez2@ines.cs.unibo.it:/home/web/site202118/html/public/css/
             scp -r dist/js/management-dashboard antonio.lopez2@ines.cs.unibo.it:/home/web/site202118/html/public/js/
-            scp -r dist/img/management-dashboard antonio.lopez2@ines.cs.unibo.it:/home/web/site202118/html/public/img/
+            scp -r dist/img/management-dashboard antonio.lopez2@ines.cs.unibo.it:/home/web/site202118/html/public/media/img/
 
 
 workflows:
