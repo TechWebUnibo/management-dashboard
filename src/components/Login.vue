@@ -76,7 +76,6 @@ export default {
 <style lang="scss" scoped>
     #login{
         text-align: left;
-        width: 70%;
         max-width: 600px;
         margin: auto;
         padding: 3em;

@@ -22,7 +22,7 @@ export default {
             cards: [
                 {title: 'Customers', text: 'Show stats about the customers', link: 'customers', img: 'customers.png'},
                 {title: 'Staff', text: 'Show stats about the staff', link: '#', img: 'staff.jpg'},
-                {title: 'Rental', text: 'Show stats about the rentals', link: '#', img: 'rentals.jpg'}
+                {title: 'Rental', text: 'Show stats about the rentals', link: 'rentals', img: 'rentals.jpg'}
             ]
         }
     },

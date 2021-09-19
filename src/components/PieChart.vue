@@ -1,9 +1,9 @@
 
 <script>
-import { Bar } from 'vue-chartjs'
+import { Pie } from 'vue-chartjs'
 
 export default {
-    extends: Bar,
+    extends: Pie,
     props: {
         title:{
             type: String
@@ -33,7 +33,7 @@ export default {
                     '#DC3545',
                     '#FFC107',
                 ],
-            borderWidth: 1
+                borderWidth: 1
         }]
       }, this.options)
   }

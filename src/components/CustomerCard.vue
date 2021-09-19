@@ -1,6 +1,6 @@
 <template>
 
-<div class="card" style="width: 18rem;">
+<div class="card" style="">
     <div class="card-header">
         <img class="card-img-top"  :src="customer.avatar"  alt="Customer avatar">
     </div>
@@ -14,15 +14,18 @@
         <li class="list-group-item">{{customer.rentInfo.cancelled}} cancelled</li>
         <li class="list-group-item">{{customer.rentInfo.delayed}} delayed</li>
     </ul>
+     <div class="card-footer bg-transparent border-primary">
+        <h6>Personal info</h6>
+        <ul class="list-group list-group-flush" v-if="customer.address">
+            <li class="list-group-item">Lives in: {{customer.address.city }}</li>
+            <li class="list-group-item">Zip code: {{customer.address.zip }}</li>
+            <li class="list-group-item">Residence: {{customer.address.residence }}</li>
+        </ul>
+        <ul class="list-group list-group-flush" v-if="!customer.address">
+            <li class="list-group-item">No other info</li>
+        </ul>
+     </div>
   </div>
-  <ul class="list-group list-group-flush" v-if="customer.address">
-    <li class="list-group-item">Lives in: {{customer.address.city }}</li>
-    <li class="list-group-item">Zip code: {{customer.address.zip }}</li>
-    <li class="list-group-item">Residence: {{customer.address.residence }}</li>
-  </ul>
-  <ul class="list-group list-group-flush" v-if="!customer.address">
-    <li class="list-group-item">No other info</li>
-  </ul>
 </div>
 
 </template>
@@ -30,7 +33,7 @@
 <script>
 
 export default {
-    name: 'Card',
+    name: 'CustomerCard',
     data: function (){
         return {
         }
@@ -59,6 +62,12 @@ export default {
         min-height: 40%;
         display: flex;
         align-items: center;
+    }
+    .card-body{
+        overflow-y:  scroll;
+    }
+    .card-footer{
+        padding: 1em 0;
     }
 
 </style>
