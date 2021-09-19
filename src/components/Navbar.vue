@@ -87,7 +87,7 @@ export default {
     flex-flow: column;
     justify-content: flex-start;
     position: fixed;
-    z-index: 1; 
+    z-index: 3; 
   }
 
 .sidebar-toggle{

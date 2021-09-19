@@ -2,6 +2,15 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 
+import VCalendar from 'v-calendar';
+
+// Use v-calendar & v-date-picker components
+Vue.use(VCalendar, {
+  componentPrefix: 'v',  // Use <vc-calendar /> instead of <v-calendar />
+});
+
+
+
 // Font Awesome
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faBars }  from '@fortawesome/free-solid-svg-icons'

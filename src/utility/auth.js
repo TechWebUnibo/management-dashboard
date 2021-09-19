@@ -8,21 +8,27 @@ const PUBLICKEY_URL = BASE_URL + '/publicKey'
 //const MANAGER_AUTH = MANAGER_LOGIN + '/authenticated'
 
 export async function login(username, password){
-            let res = await fetch(MANAGER_LOGIN, {
-                method: 'POST',
-                mode: 'cors', // no-cors, *cors, same-origin
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Access-Control-Allow-Origin': '*'
-                },
-                body: JSON.stringify({ username: username, password: password })
-            })
-            let status = res.status
-            res = await res.json()
-            if(status === 200){
-                setToken(res.accessToken)
+            try{
+                let res = await fetch(MANAGER_LOGIN, {
+                    method: 'POST',
+                    mode: 'cors', // no-cors, *cors, same-origin
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Access-Control-Allow-Origin': '*'
+                    },
+                    body: JSON.stringify({ username: username, password: password })
+                })
+                let status = res.status
+                res = await res.json()
+                if(status === 200){
+                    setToken(res.accessToken)
+                }
+                return status
             }
-            return status
+            catch(e){
+                console.log(e)
+            }
+            return 502
         }
 
 

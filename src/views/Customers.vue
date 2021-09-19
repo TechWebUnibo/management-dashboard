@@ -2,16 +2,25 @@
     <div id='Customers' class="container">
         <h1>Customers charts</h1>
         <div class="row mt-5">
-            <BarChart class="col-lg-6" v-for="chart in charts" :key='chart.title' :chartdata="chart.chardata" :labels="chart.labels" :title="chart.title" :options="chartOptions"/>
+            <BarChart :aria-label="chart.title" role="figure" class="col-lg-6" v-for="chart in charts" :key='chart.title' :chartdata="chart.chardata" :labels="chart.labels" :title="chart.title" :options="chartOptions"/>
         </div>
-        <label for="customer_order">Sort</label>
-            <select class="form-select" id="customer_order" v-model="order" @change="sortCustomer">
-                <option disabled>Choose...</option>
-                <option>Number of rentals</option>
-                <option>Turnover</option>
-            </select>
-        <div v-if="isLoaded" id="customerCards">
-            <CustomerCard v-for="customer in customers" :key="customer._id" :customer="customer" />
+        <h2>Customers</h2>
+            <div class="row">
+                <div class="col-lg-3">
+                    <label for="searchBar">Filter:</label>
+                    <input type="text" v-model="search" id="searchBar" class="custom-select" placeholder="Search title.."/>
+                </div>
+                <div class="offset-lg-7 col-lg-2">
+                    <label for="customer_order">Sort</label>
+                        <select class="custom-select" id="customer_order" v-model="order" @change="sortCustomer">
+                            <option disabled>Choose...</option>
+                            <option>Number of rentals</option>
+                            <option>Turnover</option>
+                        </select>
+                </div>
+            </div>
+        <div v-if="isLoaded" class="cardsContainer">
+            <CustomerCard v-for="customer in filteredList" :key="customer._id" :customer="customer" />
         </div> 
     </div>
 </template>
@@ -32,6 +41,7 @@ export default {
     data: function(){
         return {
             customers: [],
+            search: '',
             order: 'Choose...',
             charts: [],
             chartOptions:{
@@ -55,8 +65,14 @@ export default {
         this.charts.push(this.turnoverChart(this.customers, invoices))
 
         this.isLoaded = true
+    },  
+    computed: {
+    filteredList() {
+        return this.customers.filter(customer => {
+            return customer.username.toLowerCase().includes(this.search.toLowerCase())
+            })
+        }
     },
-
     methods:{
         nRentalChart(customers, rents){
             let chardata = []
@@ -125,7 +141,6 @@ export default {
             return {chardata: chardata, labels: labels, title: 'Turnover for customer'}    
         },
         sortCustomer(){
-            console.log(this.order)
             if(this.order === 'Number of rentals'){
                 this.customers.sort((a, b) =>{
                     console.log(a.rentInfo.total)
@@ -157,33 +172,21 @@ export default {
 
     @import "@/scss/variables.scss";
 
-    #Customers h1{
+    #Customers h1, h2{
         text-align: center;
     }
     #Customers{
         margin-top: 2em;
         padding-bottom: 1em;
     }
-    #customerCards{
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr 1fr;
-        row-gap: 3em;
-        margin-top: 2em;
-        justify-content: space-between;
-        justify-items: center;
+
+    .search-wrapper{
+
+        justify-content: end;
+        column-gap: 1em;
+        
     }
 
 
-
-    @include media-breakpoint-down(lg) {
-        #customerCards{
-            grid-template-columns: 1fr 1fr;
-        }
-    }
-    @include media-breakpoint-down(sm) {
-        #customerCards{
-            grid-template-columns: 1fr;
-        }
-    }
 </style>
 
