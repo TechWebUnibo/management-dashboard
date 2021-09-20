@@ -1,5 +1,6 @@
 <template>
     <div id="Rentals">
+        <h1>Rentals charts</h1>
         <div class="row mt-5">
             <PieChart :aria-label="chart.title" role="figure" class="col-lg-6" v-for="chart in charts" :key='chart.title' :chartdata="chart.chardata" :labels="chart.labels" :title="chart.title" :options="chartOptions"/>
             <BarChart :aria-label="chart.title" role="figure" class="col-lg-6" v-for="chart in charts" :key='chart.title + "-pie"' :chartdata="chart.chardata" :labels="chart.labels" :title="chart.title" :options="chartOptions"/>

@@ -8,7 +8,8 @@ export const apiMixin = {
             rentsUrl: 'rentals',
             staffUrl: 'staff',
             invoicesUrl: 'invoices',
-            productsUrl: 'products'
+            productsUrl: 'products',
+            itemsUrl: 'items'
         }
     },
     methods:{
@@ -113,6 +114,35 @@ export const apiMixin = {
             }
             try {
                 let res = await fetch(this.url + this.invoicesUrl + query, {
+                    method: 'GET',
+                    mode: 'cors', // no-cors, *cors, same-origin
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Access-Control-Allow-Origin': '*',
+                        'Authorization': 'Bearer ' + getToken()
+                    },
+                })
+                if (res.status == 200) {
+                    res = await res.json()
+                    return res
+                }
+                else {
+                    return []
+                }
+            }
+            catch (e) {
+                console.log(e)
+            }
+        },
+        getItems: async function(query) {
+            if (typeof query != 'undefined') {
+                query = '?' + new URLSearchParams(query).toString()
+            }
+            else {
+                query = ''
+            }
+            try {
+                let res = await fetch(this.url + this.itemsUrl + query, {
                     method: 'GET',
                     mode: 'cors', // no-cors, *cors, same-origin
                     headers: {

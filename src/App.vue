@@ -56,6 +56,7 @@ export default {
 
 h1, h2{
   font-family: $primary-font;
+  text-align: center;
 }
 
 

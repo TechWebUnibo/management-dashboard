@@ -1,5 +1,6 @@
 <template>
     <div id="Products">
+        <h1>Products charts</h1>
         <div class="row mt-5">
             <BarChart :aria-label="chart.title" role="figure" class="col-lg-6" v-for="chart in charts" :key='chart.title' :chartdata="chart.chardata" :labels="chart.labels" :title="chart.title" :options="chartOptions"/>
         </div>
@@ -11,16 +12,15 @@
                         <label for="customer_order">Sort</label>
                             <select class="custom-select" id="customer_order" v-model="order" @change="sortProducts" role="search">
                                 <option disabled>Choose...</option>
-                                <option>Number of products</option>
-                                <option>Price</option>
-                                <option>Ascending date</option>
-                                <option>Descending date</option>
+                                <option>Number of items</option>
+                                <option>Turnover</option>
                             </select>
                 </div>
             <div class="offset-lg-6 col-lg-3">
             </div>
         </div>
     <div class="cardsContainer">
+        <ProductCard v-for="product in filteredList" :key="product.name" :product="product" />
     </div> 
 
     </div>
@@ -29,6 +29,7 @@
 <script>
 
 import BarChart from "../components/BarChart.vue";
+import ProductCard from '../components/ProductCard.vue';
 
 
 import { apiMixin } from '../mixins/apiMixin';
@@ -38,7 +39,8 @@ export default {
     name: 'Rentals',
     mixins: [apiMixin],
     components:{
-        BarChart
+        BarChart,
+        ProductCard
     },
     data: function(){
         return {
@@ -63,9 +65,11 @@ export default {
         let rentals = await this.getRentals({productName: true})
         let invoices = await this.getInvoices({productName: true})
         this.products = await this.getProducts()
-        console.log(this.nRentalChart(this.products, rentals))
+        for (let product of this.products) {
+            product.items = await this.getItems({type: product._id})
+        }
         this.charts.push(this.nRentalChart(this.products, rentals))
-        this.charts.push(this.turnoverChart(this.products, invoices ))
+        this.charts.push(this.turnoverChart(this.products, invoices))
         this.filtered = this.products   
     },
     computed: {
@@ -145,8 +149,11 @@ export default {
             return {chardata: chardata, labels: labels, title: 'Turnover for product'}    
         },
         sortProducts(){
-            return this.products
-        }
+            if(this.order === 'Number of items')
+                this.products.sort((a, b) => b.items.length - a.items.length )
+            else if(this.order === 'Turnover')
+                this.products.sort((a, b) => b.turnover - a.turnover)      
+            }
     }
 }
 </script>
