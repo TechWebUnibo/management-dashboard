@@ -82,7 +82,6 @@ export const apiMixin = {
             else{
                 query = ''
             }
-            console.log(query)
             try{
                 let res = await fetch(this.url + this.rentsUrl + query, {
                     method: 'GET',
@@ -105,9 +104,15 @@ export const apiMixin = {
                 console.log(e)
             }
         },
-        getInvoices: async function() {
+        getInvoices: async function(query) {
+            if (typeof query != 'undefined') {
+                query = '?' + new URLSearchParams(query).toString()
+            }
+            else {
+                query = ''
+            }
             try {
-                let res = await fetch(this.url + this.invoicesUrl, {
+                let res = await fetch(this.url + this.invoicesUrl + query, {
                     method: 'GET',
                     mode: 'cors', // no-cors, *cors, same-origin
                     headers: {

@@ -38,7 +38,7 @@ export default {
       { id: 3, text: 'Customers', link: this.baseUrl + '/customers'},
       { id: 4, text: 'Rental', link: this.baseUrl +  '/rentals' } ,
       { id: 5, text: 'Staff', link: this.baseUrl +  '/staff'},
-      { id: 6, text: 'Items', link: this.baseUrl +  '/items' }
+      { id: 6, text: 'Products', link: this.baseUrl +  '/products' }
     ])
   },
 }
