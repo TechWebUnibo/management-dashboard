@@ -3,6 +3,8 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Customers from '../views/Customers.vue'
 import Rentals from '../views/Rentals.vue'
+import Products from '../views/Products.vue'
+import Items from '../views/Items.vue'
 import NotFound from '../views/NotFound.vue'
 import Dashboard from '../views/Dashboard.vue'
 import { isLogged } from  '../utility/auth'
@@ -31,6 +33,19 @@ const routes = [
     path: '/management-dashboard/rentals',
     name: 'Rentals',
     component: Rentals,
+    meta: { requiresAuth: true }
+  },
+  {
+    path: '/management-dashboard/products',
+    name: 'Products',
+    component: Products,
+    meta: { requiresAuth: true }
+  },
+  {
+    path: '/management-dashboard/items',
+    name: 'Items',
+    component: Items,
+    props: true, // set props to true, this will pass the url params as props
     meta: { requiresAuth: true }
   },
   {
