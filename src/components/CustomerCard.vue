@@ -52,22 +52,6 @@ export default {
 
 
 <style lang="scss" scoped>
-    .card-text{
-        color: black;
-    }
-    .card-title{
-        color: black;
-    }
-    .card-header{
-        min-height: 40%;
-        display: flex;
-        align-items: center;
-    }
-    .card-body{
-        overflow-y:  scroll;
-    }
-    .card-footer{
-        padding: 1em 0;
-    }
+
 
 </style>

@@ -63,7 +63,7 @@ export default {
         RentalCard,
         PieChart,
         BarChart
-    },
+    },  
     data: function(){
         return {
             rentals: [],
@@ -84,7 +84,7 @@ export default {
         }
     },
     async created(){
-        this.rentals = await this.getRentals({productName: true})
+        this.rentals = await this.getRentals({productName: true, customerName: true, employeeName: true})
         this.charts.push(this.stateChart(this.rentals))
         this.filtered = this.rentals
     },

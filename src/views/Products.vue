@@ -4,7 +4,7 @@
         <div class="row mt-5">
             <BarChart :aria-label="chart.title" role="figure" class="col-lg-6" v-for="chart in charts" :key='chart.title' :chartdata="chart.chardata" :labels="chart.labels" :title="chart.title" :options="chartOptions"/>
         </div>
-            <h2 class="mt-5">Rentals</h2>
+            <h2 class="mt-5">Products</h2>
             <div class="row">
                 <div class="col-lg-3 pb-2">
                     <label for="searchBar">Filter:</label>

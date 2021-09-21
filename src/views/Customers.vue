@@ -181,10 +181,8 @@ export default {
     }
 
     .search-wrapper{
-
         justify-content: end;
         column-gap: 1em;
-        
     }
 
 

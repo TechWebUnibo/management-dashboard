@@ -31,7 +31,7 @@ export default {
     this.authenticated = await isLogged()
     await refreshPublicKey()
     this.basicNavItems = [
-      { id: 1, text: 'Home', link: '#' },
+      { id: 1, text: 'Home', link: this.baseUrl },
       { id: 2, text: 'Admin Page', link: '/admin'}
     ]
     this.fullNavItems = this.basicNavItems.concat([
@@ -105,6 +105,27 @@ canvas{
         grid-template-columns: 1fr ;
     }
 }
+
+
+.card-text{
+    color: black;
+}
+.card-title{
+    color: black;
+}
+.card-header{
+    min-height: 40%;
+    display: flex;
+    align-items: center;
+}
+.card-body{
+    overflow-y:  scroll;
+}
+.card-footer{
+    padding: 1em 0;
+}
+
+
 
 .custom-select {
     display: block;
