@@ -114,7 +114,7 @@ canvas{
     color: black;
 }
 .card-header{
-    min-height: 40%;
+    height: 40%;
     display: flex;
     align-items: center;
 }

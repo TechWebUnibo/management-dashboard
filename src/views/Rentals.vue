@@ -63,7 +63,10 @@ export default {
         RentalCard,
         PieChart,
         BarChart
-    },  
+    },
+    props:{
+        rentalsProps: Array
+    },
     data: function(){
         return {
             rentals: [],
@@ -84,7 +87,8 @@ export default {
         }
     },
     async created(){
-        this.rentals = await this.getRentals({productName: true, customerName: true, employeeName: true})
+        if(!    this.rentalsProps)
+            this.rentals = await this.getRentals({productName: true, customerName: true, employeeName: true})
         this.charts.push(this.stateChart(this.rentals))
         this.filtered = this.rentals
     },

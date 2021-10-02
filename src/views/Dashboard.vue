@@ -21,7 +21,7 @@ export default {
             baseUrl: '/management-dashboard/',
             cards: [
                 {title: 'Customers', text: 'Show stats about the customers', link: 'customers', img: 'customers.png'},
-                {title: 'Staff', text: 'Show stats about the staff', link: '#', img: 'staff.jpg'},
+                {title: 'Staff', text: 'Show stats about the staff', link: 'staff', img: 'staff.jpg'},
                 {title: 'Rentals', text: 'Show stats about the rentals', link: 'rentals', img: 'rentals.jpg'},
                 {title: 'Products', text: 'Show stats about the products', link: 'products', img: 'products.jpg'}
             ]

@@ -162,6 +162,31 @@ export const apiMixin = {
             catch (e) {
                 console.log(e)
             }
+        },
+
+        modifyStaff: async function (id, data) {
+            try {
+                let res = await fetch(this.url + this.staffUrl + '/' + id, {
+                    method: 'POST',
+                    mode: 'cors', // no-cors, *cors, same-origin
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Access-Control-Allow-Origin': '*',
+                        'Authorization': 'Bearer ' + getToken()
+                    },
+                    body: JSON.stringify(data)
+                })
+                if (res.status == 200) {
+                    res = await res.json()
+                    return res
+                }
+                else {
+                    return []
+                }
+            }
+            catch (e) {
+                console.log(e)
+            }
         }
 
     }

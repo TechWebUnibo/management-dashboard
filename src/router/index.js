@@ -4,6 +4,7 @@ import Home from '../views/Home.vue'
 import Customers from '../views/Customers.vue'
 import Rentals from '../views/Rentals.vue'
 import Products from '../views/Products.vue'
+import Staff from '../views/Staff.vue'
 import Items from '../views/Items.vue'
 import NotFound from '../views/NotFound.vue'
 import Dashboard from '../views/Dashboard.vue'
@@ -39,6 +40,12 @@ const routes = [
     path: '/management-dashboard/products',
     name: 'Products',
     component: Products,
+    meta: { requiresAuth: true }
+  },
+  {
+    path: '/management-dashboard/staff',
+    name: 'Staff',
+    component: Staff,
     meta: { requiresAuth: true }
   },
   {
