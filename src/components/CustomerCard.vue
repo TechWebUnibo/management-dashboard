@@ -2,7 +2,7 @@
 
 <div class="card" style="">
     <div class="card-header">
-        <img class="card-img-top"  :src="customer.avatar"  alt="Customer avatar">
+        <img class="card-img-top img-thumbnail"  :src="customer.avatar"  alt="Customer avatar">
     </div>
   <div class="card-body">
     <h5 class="card-title">{{customer.username}}</h5>
@@ -14,7 +14,8 @@
         <li class="list-group-item">{{customer.rentInfo.cancelled}} cancelled</li>
         <li class="list-group-item">{{customer.rentInfo.delayed}} delayed</li>
     </ul>
-     <div class="card-footer bg-transparent border-primary">
+         <hr>
+     <div id='personalInfo'>
         <h6>Personal info</h6>
         <ul class="list-group list-group-flush" v-if="customer.address">
             <li class="list-group-item">Lives in: {{customer.address.city }}</li>
@@ -26,6 +27,9 @@
         </ul>
      </div>
   </div>
+    <div class="card-footer bg-transparent">
+        <router-link :to="{ name: 'Rentals', params: {query: {filters: {customer: customer._id}, message: `Rentals made by ${customer.username}`} } }" class="btn btn-primary mt-4">Show rentals</router-link>
+    </div>
 </div>
 
 </template>
@@ -53,5 +57,9 @@ export default {
 
 <style lang="scss" scoped>
 
+.card-footer{
+    border-top: 0px;
+    padding: 1rem 1rem;
+}
 
 </style>

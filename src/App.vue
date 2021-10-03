@@ -6,18 +6,21 @@
     <main class="container">
       <router-view @userLogged="authenticated = true" />
     </main>
+    <Footer :navItems="basicNavItems"></Footer>
 </div>
 </template>
 
 
 <script>
 import Navbar from '@/components/Navbar.vue'
+import Footer from '@/components/Footer.vue'
 import { refreshPublicKey, isLogged } from "./utility/auth";
 
 export default {
   name: 'App',
   components: {
-    Navbar
+    Navbar,
+    Footer
   },
       data: function () {
       return {
@@ -32,13 +35,14 @@ export default {
     await refreshPublicKey()
     this.basicNavItems = [
       { id: 1, text: 'Home', link: this.baseUrl },
-      { id: 2, text: 'Admin Page', link: '/admin'}
+      { id: 2, text: 'Admin Page', link: '/admin'},
+      { id: 3, text: 'Shop', link: '/shop'}
     ]
     this.fullNavItems = this.basicNavItems.concat([
-      { id: 3, text: 'Customers', link: this.baseUrl + '/customers'},
-      { id: 4, text: 'Rental', link: this.baseUrl +  '/rentals' } ,
-      { id: 5, text: 'Staff', link: this.baseUrl +  '/staff'},
-      { id: 6, text: 'Products', link: this.baseUrl +  '/products' }
+      { id: 4, text: 'Customers', link: this.baseUrl + '/customers'},
+      { id: 5, text: 'Rental', link: this.baseUrl +  '/rentals' } ,
+      { id: 6, text: 'Staff', link: this.baseUrl +  '/staff'},
+      { id: 7, text: 'Products', link: this.baseUrl +  '/products' }
     ])
   },
 }
@@ -52,6 +56,16 @@ export default {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  min-height: 100%;
+}
+
+html, body{
+  min-height: 100%;
+  position: relative;
+}
+
+html{
+  position: relative;
 }
 
 h1, h2{
@@ -114,15 +128,12 @@ canvas{
     color: black;
 }
 .card-header{
-    height: 40%;
     display: flex;
     align-items: center;
 }
-.card-body{
-    overflow-y:  scroll;
-}
+
 .card-footer{
-    padding: 1em 0;
+    padding: 1em 1em;
 }
 
 

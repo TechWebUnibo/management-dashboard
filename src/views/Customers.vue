@@ -143,7 +143,6 @@ export default {
         sortCustomer(){
             if(this.order === 'Number of rentals'){
                 this.customers.sort((a, b) =>{
-                    console.log(a.rentInfo.total)
                     if(a.rentInfo.total < b.rentInfo.total)
                         return 1
                     if(a.rentInfo.total > b.rentInfo.total)

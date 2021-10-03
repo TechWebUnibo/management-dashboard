@@ -5,7 +5,7 @@
             <PieChart :aria-label="chart.title" role="figure" class="col-lg-6" v-for="chart in charts" :key='chart.title' :chartdata="chart.chardata" :labels="chart.labels" :title="chart.title" :options="chartOptions"/>
             <BarChart :aria-label="chart.title" role="figure" class="col-lg-6" v-for="chart in charts" :key='chart.title + "-pie"' :chartdata="chart.chardata" :labels="chart.labels" :title="chart.title" :options="chartOptions"/>
         </div>
-            <h2 class="mt-5">Rentals</h2>
+            <h2 class="mt-5">{{query.message || 'Rentals'}}</h2>
             <div class="row">
                 <div class="col-lg-3 pb-2">
                     <label for="searchBar">Filter:</label>
@@ -65,7 +65,9 @@ export default {
         BarChart
     },
     props:{
-        rentalsProps: Array
+        query: {
+            default: () => {return {}}
+        }
     },
     data: function(){
         return {
@@ -87,8 +89,8 @@ export default {
         }
     },
     async created(){
-        if(!    this.rentalsProps)
-            this.rentals = await this.getRentals({productName: true, customerName: true, employeeName: true})
+        console.log(this.query)
+        this.rentals = await this.getRentals({productName: true, customerName: true, employeeName: true, ...this.query.filters})
         this.charts.push(this.stateChart(this.rentals))
         this.filtered = this.rentals
     },
@@ -101,7 +103,6 @@ export default {
     },
     methods:{
         stateChart(rentals){
-            console.log(rentals)
             const labels = ['not started', 'in progress', 'terminated', 'cancelled', 'delayed']
             let count = {
                 not_started: 0,
@@ -139,7 +140,6 @@ export default {
             })
         },
         filterByDate(){
-            console.log(this.range)
             if(Date.parse(this.range.start) && Date.parse(this.range.end)){
                 this.filtered = this.filtered.filter(rental => {
                     return (rental.start > this.range.start && rental.start < this.range.end) ||

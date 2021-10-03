@@ -141,7 +141,6 @@ export default {
         sortStaff(){
             if(this.order === 'Number of rentals'){
                 this.staff.sort((a, b) =>{
-                    console.log(a.rentInfo.total)
                     if(a.rentInfo.total < b.rentInfo.total)
                         return 1
                     if(a.rentInfo.total > b.rentInfo.total)

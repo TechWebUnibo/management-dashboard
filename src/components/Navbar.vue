@@ -1,6 +1,8 @@
 <template>
     <nav class="nav">
-        <a class="nav-link">SomeCompany</a>
+        <a class="navbar-brand" href="#">
+            <img src="../assets/logo.png" alt="Company Logo" width="100" height="50">
+        </a>
         <ul id='collapseItems'>
             <NavItem  v-for='navItem in navItems' :key='navItem.id' :navItem='navItem' />
         </ul>
@@ -101,6 +103,7 @@ export default {
     background: $primary-color;
     background-color: #F5EDDD;
     transition: 0.2s; 
+    line-height: 3em;
 }
 
 .sidebar-toggled button {

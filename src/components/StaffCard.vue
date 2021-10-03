@@ -11,11 +11,14 @@
         <li class="list-group-item">{{employee.rentInfo.cancelled}} cancelled</li>
         <li class="list-group-item">{{employee.rentInfo.delayed}} delayed</li>
     </ul>
-    <div class="form-check form-switch">
-        <input class="form-check-input" type="checkbox" @change="changeRole" id="manager_switch" :checked="employee.role === 'manager'">
-        <label class="form-check-label" for="manager_switch">Manager</label>
-    </div>
   </div>
+    <div class="card-footer bg-transparent">
+            <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" @change="changeRole" id="manager_switch" :checked="employee.role === 'manager'">
+                <label class="form-check-label" for="manager_switch">Manager</label>
+            </div>
+        <router-link :to="{ name: 'Rentals', params: {query: {filters: {employee: employee._id}, message: `Rentals managed by ${employee.username}`} } }" class="btn btn-primary mt-4">Show rentals</router-link>
+    </div>
 </div>
 
 </template>
@@ -35,7 +38,7 @@ export default {
     },
     methods:{
         async changeRole(){
-            console.log(await this.modifyStaff(this.employee._id, {role: this.employee.role === 'manager'? 'administrator' : 'manager'}))
+            await this.modifyStaff(this.employee._id, {role: this.employee.role === 'manager'? 'administrator' : 'manager'})
         }
     }
 }

@@ -34,6 +34,7 @@ const routes = [
     path: '/management-dashboard/rentals',
     name: 'Rentals',
     component: Rentals,
+    props: true, // set props to true, this will pass the url params as props
     meta: { requiresAuth: true }
   },
   {
@@ -54,6 +55,10 @@ const routes = [
     component: Items,
     props: true, // set props to true, this will pass the url params as props
     meta: { requiresAuth: true }
+  },
+  {
+    path: '/shop',
+    name: 'Shop',
   },
   {
     path: '/management-dashboard/about',

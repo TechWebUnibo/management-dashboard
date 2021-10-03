@@ -2,7 +2,7 @@
     <div id="Products">
         <h1>Items charts</h1>
         <h2 v-if="typeof items === 'undefined'">This page shoul be visited only with the proper links</h2>
-        <div v-if="typeof items !== 'undefined' ">
+        <div v-if="typeof items !== 'undefined'" >
             <div class="row mt-5">
                 <BarChart :aria-label="chart.title" role="figure" class="col-lg-6" v-for="chart in charts" :key='chart.title' :chartdata="chart.chardata" :labels="chart.labels" :title="chart.title" :options="chartOptions"/>
             </div>
@@ -84,7 +84,6 @@ export default {
     },
     async created(){
         if(typeof this.items !== 'undefined'){
-            console.log(this.items)
             let rentals = await this.getRentals()
             let invoices = await this.getInvoices()
     
