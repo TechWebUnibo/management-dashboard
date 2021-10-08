@@ -20,9 +20,9 @@ export default {
     }
     a{
         color: black;
-        font-size: 1em;
+        font-size: 1.2em;
     }
     a:hover{
-    color: white;
+    color: blue;
     }
 </style>

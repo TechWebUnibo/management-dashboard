@@ -61,11 +61,6 @@ export default {
 
 html, body{
   min-height: 100%;
-  position: relative;
-}
-
-html{
-  position: relative;
 }
 
 h1, h2{
@@ -87,7 +82,7 @@ a {
 main{
   margin-top: 1em;
   background-color: white;
-  height: 100%;
+  min-height: 100%;
 }
 
 canvas{

@@ -15,7 +15,7 @@
         <li class="list-group-item">{{customer.rentInfo.delayed}} delayed</li>
     </ul>
          <hr>
-     <div id='personalInfo'>
+     <div id='personalInfo'>    
         <h6>Personal info</h6>
         <ul class="list-group list-group-flush" v-if="customer.address">
             <li class="list-group-item">Lives in: {{customer.address.city }}</li>

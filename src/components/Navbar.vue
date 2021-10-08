@@ -1,7 +1,7 @@
 <template>
     <nav class="nav">
         <a class="navbar-brand" href="#">
-            <img src="../assets/logo.png" alt="Company Logo" width="100" height="50">
+            <img src="../assets/logo.png" alt="Company Logo" width="130" height="40">
         </a>
         <ul id='collapseItems'>
             <NavItem  v-for='navItem in navItems' :key='navItem.id' :navItem='navItem' />
@@ -15,7 +15,7 @@
                 <NavItem  v-for='navItem in navItems' :key='navItem.id' :navItem='navItem' />
             </ul>
         </div>
-        </nav>
+    </nav>
 </template>
 
 <script>
@@ -97,11 +97,12 @@ export default {
     padding: 1rem;
 }
 
+
 .sidebar-toggled{
     width: 35%;
     max-width: 300px;
     background: $primary-color;
-    background-color: #F5EDDD;
+    background-color: $primary-color;
     transition: 0.2s; 
     line-height: 3em;
 }
