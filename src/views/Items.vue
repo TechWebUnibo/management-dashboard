@@ -9,7 +9,7 @@
             <div class="row mt-5">
                 <PieChart :aria-label="pieChart.title" role="figure" class="col-lg-12"  :key='pieChart.title' :chartdata="pieChart.chardata" :labels="pieChart.labels" :title="pieChart.title" :options="chartOptions"/>
             </div>
-                <h2 class="mt-5">Rentals</h2>
+                <h2 class="mt-5">Items</h2>
                 <div class="row">
                     <div class="col-lg-3 pb-2">
                         <label for="searchBar">Filter:</label>
@@ -147,14 +147,12 @@ export default {
             let count = {}
             let labels = []
             invoices.forEach(invoice => {
-                Object.keys(invoice.products).forEach(item =>{
-                    if(typeof count[item] == 'undefined'){
-                        count[item] = invoice.price
-                    }
-                    else{
-                        count[item] = count[item] + invoice.price
-                    }
-                })
+                if(typeof count[invoice.productType] == 'undefined'){
+                    count[invoice.productType] = invoice.price
+                }
+                else{
+                    count[invoice.productType] = count[invoice.productType] + invoice.price
+                }
             })
 
             items.forEach(item =>{

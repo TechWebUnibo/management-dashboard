@@ -3,7 +3,7 @@ import { getToken } from '../utility/auth'
 export const apiMixin = {
     data: function() {
         return {
-            url: '//site202118.tw.cs.unibo.it/api/',
+            url: '//localhost:8000/api/',
             customersUrl: 'customers',
             rentsUrl: 'rentals',
             staffUrl: 'staff',
@@ -178,7 +178,7 @@ export const apiMixin = {
                 })
                 if (res.status == 200) {
                     res = await res.json()
-                    return res
+                    return res  
                 }
                 else {
                     return []

@@ -64,6 +64,7 @@ export default {
     async created(){
         let rentals = await this.getRentals({productName: true})
         let invoices = await this.getInvoices({productName: true})
+        console.log({invoices})
         this.products = await this.getProducts()
         for (let product of this.products) {
             product.items = await this.getItems({type: product._id})
@@ -85,6 +86,20 @@ export default {
             let count = {}
             let labels = []
             rents.forEach(rent => {
+                if(rent.products.length > 1){
+                    if(typeof count[rent.productType] == 'undefined'){
+                        count[rent  .productType] = {
+                            not_started: 0,
+                            in_progress: 0,
+                            cancelled: 0,
+                            terminated: 0,
+                            delayed: 0,
+                            total: 0
+                        } 
+                    }
+                    count[rent.productType][rent.state] = count[rent.productType][rent.state] + 1
+                    count[rent.productType].total = count[rent.productType].total + 1   
+                }
                 rent.products.forEach(product =>{
                     if(typeof count[product] == 'undefined'){
                         count[product] = {
@@ -125,14 +140,12 @@ export default {
             let count = {}
             let labels = []
             invoices.forEach(invoice => {
-                Object.keys(invoice.products).forEach(product =>{
-                    if(typeof count[product] == 'undefined'){
-                        count[product] = invoice.price
-                    }
-                    else{
-                        count[product] = count[product] + invoice.price
-                    }
-                })
+                if(typeof count[invoice.productType] == 'undefined'){
+                    count[invoice.productType] = invoice.price
+                }
+                else{
+                    count[invoice.productType] = count[invoice.productType] + invoice.price
+                }
             })
 
             products.forEach(product =>{
