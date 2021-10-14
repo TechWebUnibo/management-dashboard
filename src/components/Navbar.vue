@@ -20,6 +20,8 @@
 
 <script>
 
+// TODO - sistemare l'apertura e la chiusura della sidebar
+
 import NavItem from './NavItem.vue'
 
 export default {
