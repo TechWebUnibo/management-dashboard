@@ -93,4 +93,7 @@ export default {
     #login h2{
         font-size: 1.5rem;
     }
+    .d-flex{
+        gap: 0.3em
+    }
 </style>

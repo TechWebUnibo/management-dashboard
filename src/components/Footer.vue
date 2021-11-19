@@ -1,6 +1,6 @@
 <template>
     <footer class="footer">
-      <div class="container p-4">
+      <div class="container p-5">
           <div class="row">
             <div class="col-md-6">
                 <ul>
@@ -40,11 +40,10 @@ export default {
 
     .footer {
     margin-top: 2em;
-    position: block ;
     bottom: 0;
     width: 100%;
-    height: fit-content;
     line-height:40px;
+    height: 100%;
     background-color: $primary-color;
     }
 

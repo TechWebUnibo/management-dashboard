@@ -83,8 +83,8 @@ export async function isLogged(){
         return true
         */
     try{
-        jwt.verify(getToken(), await getPublicKey(), { algorithm: 'RS256' })
-        return true
+        let decoded = jwt.verify(getToken(), await getPublicKey(), { algorithm: 'RS256' })
+        return decoded.role === 'manager'
     }
     catch(err){
         return false

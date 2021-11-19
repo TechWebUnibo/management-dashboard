@@ -7,11 +7,11 @@
   <div class="card-body">
     <h5 class="card-title">{{product.name}}</h5>
     <ul class="list-group list-group-flush">
-        <li class="list-group-item active">The product has: {{product.items.length}}item</li>
+        <li class="list-group-item active">The product has: {{product.items.length}} item</li>
         <li class="list-group-item">Rented: {{product.rentInfo.total}} times</li>
         <li class="list-group-item">Total turnover: {{product.turnover}}</li>
     </ul>
-    <router-link :to="{ name: 'Items', params: {items: product.items } }" class="btn btn-primary mt-4">Show items</router-link>
+    <router-link v-if="product.items.length > 1" :to="{ name: 'Items', params: {items: product.items } }" class="btn btn-primary mt-4">Show items</router-link>
   </div>
 </div>
 

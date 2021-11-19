@@ -19,9 +19,16 @@
                         </select>
                 </div>
             </div>
-        <div v-if="isLoaded" class="cardsContainer">
+        <div v-if="isLoaded" class="cardsContainer" id="customersContainer">
             <CustomerCard v-for="customer in filteredList" :key="customer._id" :customer="customer" />
         </div> 
+            <div class="mt-3">
+                <b-pagination align="center"
+                    v-model="currentPage"
+                    :total-rows="rows"
+                    :per-page="perPage"
+                    aria-controls="customersContainer"></b-pagination>
+            </div>
     </div>
 </template>
 
@@ -53,6 +60,8 @@ export default {
                     }
                 }
             },
+            perPage: 4,
+            currentPage: 1,
             isLoaded: false
         }
     },
@@ -67,10 +76,17 @@ export default {
         this.isLoaded = true
     },  
     computed: {
+    rows() {
+      return this.customers.length
+    },
     filteredList() {
-        return this.customers.filter(customer => {
+        const filtered = this.customers.filter(customer => {
             return customer.username.toLowerCase().includes(this.search.toLowerCase())
             })
+            const start = this.currentPage == 1 ? 0 : ((this.currentPage -1)  * this.perPage)
+            const end = this.currentPage == 1 ? this.perPage : (start  + this.perPage)
+            console.log({start, end})
+            return filtered.slice(start, end)
         }
     },
     methods:{

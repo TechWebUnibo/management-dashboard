@@ -9,7 +9,7 @@
             <li class="list-group-item">Price: {{item.price}}</li>
         </ul>
     </div>
-      <div class="card-footer bg-transparent">
+      <div class="card-footer bg-transparent" v-if="item.rentInfo.total > 0">
         <router-link :to="{ name: 'Rentals', params: {query: {filters: {products: item._id}, message: `Rentals with ${item.name}`} } }" class="btn btn-primary mt-4">Show rentals</router-link>
     </div>
 </div>

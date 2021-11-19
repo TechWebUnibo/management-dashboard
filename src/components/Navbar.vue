@@ -4,21 +4,23 @@
             <img src="../assets/logo.png" alt="Company Logo" width="130" height="40">
         </a>
         <ul id='collapseItems'>
-            <NavItem  v-for='navItem in navItems' :key='navItem.id' :navItem='navItem' />
+            <NavItem :showIcon="false"  v-for='navItem in navItems' :key='navItem.id' :navItem='navItem' />
         </ul>
         <button class="sidebar-toggle" @click="toggleSidebar"  aria-controls="sidebar" aria-expanded="false" aria-label="Toggle navigation">
             <font-awesome-icon :icon="['fas', 'bars']" />
         </button>
         <div id='sidebar' class="sidebar-hidden">
-            <button class="sidebar-toggle" @click="toggleSidebar" aria-controls="sidebar" aria-expanded="true" aria-label="Toggle navigation"><font-awesome-icon :icon="['fas', 'arrow-left']" /></button>
+            <button class="sidebar-toggle" @click="toggleSidebar" aria-controls="sidebar" aria-expanded="true" aria-label="Toggle navigation"><font-awesome-icon :icon="['fas', 'arrow-left']" /><h3>Close</h3></button>
             <ul class="p-1">
-                <NavItem  v-for='navItem in navItems' :key='navItem.id' :navItem='navItem' />
+                <NavItem :showIcon="true" v-for='navItem in navItems' :key='navItem.id' :navItem='navItem' />
             </ul>
         </div>
     </nav>
 </template>
 
 <script>
+
+// TODO - sistemare l'apertura e la chiusura della sidebar
 
 import NavItem from './NavItem.vue'
 
@@ -70,6 +72,13 @@ export default {
     font-weight: 500;
 }
 
+.sidebar-toggle h3{
+    display: inline;
+    font-size: 1em;
+    text-align: center;
+    margin-left: 1em;
+}
+
 #collapseItems{
     display: flex;
     justify-content: space-between;
@@ -89,7 +98,7 @@ export default {
     flex-flow: column;
     justify-content: flex-start;
     position: fixed;
-    z-index: 3; 
+    z-index: 4; 
   }
 
 .sidebar-toggle{
@@ -101,6 +110,7 @@ export default {
 .sidebar-toggled{
     width: 35%;
     max-width: 300px;
+    min-width: 180px;
     background: $primary-color;
     background-color: $primary-color;
     transition: 0.2s; 

@@ -19,10 +19,16 @@
             <div class="offset-lg-6 col-lg-3">
             </div>
         </div>
-    <div class="cardsContainer">
+    <div class="cardsContainer" id='productsContainer'>
         <ProductCard v-for="product in filteredList" :key="product.name" :product="product" />
     </div> 
-
+        <div class="mt-3">
+            <b-pagination align="center"
+                v-model="currentPage"
+                :total-rows="rows"
+                :per-page="perPage"
+                aria-controls="productsContainer"></b-pagination>
+        </div> 
     </div>
 </template>
 
@@ -59,11 +65,14 @@ export default {
                 start: '',
                 end: '',
             },
+            perPage: 4,
+            currentPage: 1,
         }
     },
     async created(){
         let rentals = await this.getRentals({productName: true})
         let invoices = await this.getInvoices({productName: true})
+        console.log({invoices})
         this.products = await this.getProducts()
         for (let product of this.products) {
             product.items = await this.getItems({type: product._id})
@@ -73,10 +82,16 @@ export default {
         this.filtered = this.products   
     },
     computed: {
+    rows() {
+      return this.products.length
+    },
     filteredList() {
-        return this.filtered.filter(product => {
+        const filtered = this.filtered.filter(product => {
             return product.name.toLowerCase().includes(this.search.toLowerCase())
             })
+        const start = this.currentPage == 1 ? 0 : ((this.currentPage -1)  * this.perPage)
+        const end = this.currentPage == 1 ? this.perPage : (start  + this.perPage)
+        return filtered.slice(start, end)
         }
     },
     methods:{
@@ -85,6 +100,20 @@ export default {
             let count = {}
             let labels = []
             rents.forEach(rent => {
+                if(rent.products.length > 1){
+                    if(typeof count[rent.productType] == 'undefined'){
+                        count[rent  .productType] = {
+                            not_started: 0,
+                            in_progress: 0,
+                            cancelled: 0,
+                            terminated: 0,
+                            delayed: 0,
+                            total: 0
+                        } 
+                    }
+                    count[rent.productType][rent.state] = count[rent.productType][rent.state] + 1
+                    count[rent.productType].total = count[rent.productType].total + 1   
+                }
                 rent.products.forEach(product =>{
                     if(typeof count[product] == 'undefined'){
                         count[product] = {
@@ -125,14 +154,12 @@ export default {
             let count = {}
             let labels = []
             invoices.forEach(invoice => {
-                Object.keys(invoice.products).forEach(product =>{
-                    if(typeof count[product] == 'undefined'){
-                        count[product] = invoice.price
-                    }
-                    else{
-                        count[product] = count[product] + invoice.price
-                    }
-                })
+                if(typeof count[invoice.productType] == 'undefined'){
+                    count[invoice.productType] = invoice.price
+                }
+                else{
+                    count[invoice.productType] = count[invoice.productType] + invoice.price
+                }
             })
 
             products.forEach(product =>{

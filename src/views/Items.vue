@@ -9,7 +9,7 @@
             <div class="row mt-5">
                 <PieChart :aria-label="pieChart.title" role="figure" class="col-lg-12"  :key='pieChart.title' :chartdata="pieChart.chardata" :labels="pieChart.labels" :title="pieChart.title" :options="chartOptions"/>
             </div>
-                <h2 class="mt-5">Rentals</h2>
+                <h2 class="mt-5">Items</h2>
                 <div class="row">
                     <div class="col-lg-3 pb-2">
                         <label for="searchBar">Filter:</label>
@@ -35,8 +35,15 @@
                     </b-collapse>
                 </div>
             </div>
-            <div class="cardsContainer">
+            <div class="cardsContainer" id="itemsContainer">
                 <ItemCard v-for="item in filteredList" :key="item.name" :item="item" />
+            </div>
+            <div class="mt-3">
+                <b-pagination align="center"
+                    v-model="currentPage"
+                    :total-rows="rows"
+                    :per-page="perPage"
+                    aria-controls="itemsContainer"></b-pagination>
             </div> 
         </div>
     </div>
@@ -80,6 +87,8 @@ export default {
                 start: '',
                 end: '',
             },
+            perPage: 4,
+            currentPage: 1,
         }
     },
     async created(){
@@ -95,10 +104,17 @@ export default {
         }
     },
     computed: {
+    rows() {
+      return this.filtered.length
+    },
     filteredList() {
-        return this.filtered.filter(item => {
+        const filtered = this.filtered.filter(item => {
             return item.name.toLowerCase().includes(this.search.toLowerCase())
             })
+        console.log(this.filtered)
+        const start = this.currentPage == 1 ? 0 : ((this.currentPage -1)  * this.perPage)
+        const end = this.currentPage == 1 ? this.perPage : (start  + this.perPage)
+        return filtered.slice(start, end)
         }
     },
     methods:{
@@ -147,14 +163,12 @@ export default {
             let count = {}
             let labels = []
             invoices.forEach(invoice => {
-                Object.keys(invoice.products).forEach(item =>{
-                    if(typeof count[item] == 'undefined'){
-                        count[item] = invoice.price
-                    }
-                    else{
-                        count[item] = count[item] + invoice.price
-                    }
-                })
+                if(typeof count[invoice.productType] == 'undefined'){
+                    count[invoice.productType] = invoice.price
+                }
+                else{
+                    count[invoice.productType] = count[invoice.productType] + invoice.price
+                }
             })
 
             items.forEach(item =>{
@@ -200,7 +214,7 @@ export default {
                 not_available: 'Not available'
             }
             this.filtered = this.items.filter(item => {
-                return this.condition === conditionMap[item.condition] || this.state === 'All condition'
+                return this.condition === conditionMap[item.condition] || this.condition === 'All condition'
             })
         },
     }
