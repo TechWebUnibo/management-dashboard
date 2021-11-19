@@ -23,7 +23,7 @@ export default {
     }
     a{
         color: black;
-        font-size: 2vmax;
+        font-size: 1.2em;
     }
     a:hover{
     color: blue;

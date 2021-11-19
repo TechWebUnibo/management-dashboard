@@ -42,7 +42,13 @@
     <div class="cardsContainer">
         <RentalCard v-for="rental in filteredList" :key="rental._id" :rental="rental" />
     </div> 
-
+        <div class="mt-3">
+            <b-pagination align="center"
+                v-model="currentPage"
+                :total-rows="rows"
+                :per-page="perPage"
+                aria-controls="my-table"></b-pagination>
+        </div>
     </div>
 </template>
 
@@ -86,6 +92,8 @@ export default {
                 start: '',
                 end: '',
             },
+            perPage: 4,
+            currentPage: 1,
         }
     },
     async created(){
@@ -95,10 +103,17 @@ export default {
         this.filtered = this.rentals
     },
     computed: {
+    rows() {
+      return this.filtered.length
+    },
     filteredList() {
-        return this.filtered.filter(rental => {
+        const filtered = this.filtered.filter(rental => {
             return rental._id.toLowerCase().includes(this.search.toLowerCase())
             })
+        const start = this.currentPage == 1 ? 0 : ((this.currentPage -1)  * this.perPage)
+        const end = this.currentPage == 1 ? this.perPage : (start  + this.perPage)
+        console.log({start, end})
+        return filtered.slice(start, end)
         }
     },
     methods:{

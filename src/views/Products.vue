@@ -19,10 +19,16 @@
             <div class="offset-lg-6 col-lg-3">
             </div>
         </div>
-    <div class="cardsContainer">
+    <div class="cardsContainer" id='productsContainer'>
         <ProductCard v-for="product in filteredList" :key="product.name" :product="product" />
     </div> 
-
+        <div class="mt-3">
+            <b-pagination align="center"
+                v-model="currentPage"
+                :total-rows="rows"
+                :per-page="perPage"
+                aria-controls="productsContainer"></b-pagination>
+        </div> 
     </div>
 </template>
 
@@ -59,6 +65,8 @@ export default {
                 start: '',
                 end: '',
             },
+            perPage: 4,
+            currentPage: 1,
         }
     },
     async created(){
@@ -74,10 +82,16 @@ export default {
         this.filtered = this.products   
     },
     computed: {
+    rows() {
+      return this.products.length
+    },
     filteredList() {
-        return this.filtered.filter(product => {
+        const filtered = this.filtered.filter(product => {
             return product.name.toLowerCase().includes(this.search.toLowerCase())
             })
+        const start = this.currentPage == 1 ? 0 : ((this.currentPage -1)  * this.perPage)
+        const end = this.currentPage == 1 ? this.perPage : (start  + this.perPage)
+        return filtered.slice(start, end)
         }
     },
     methods:{

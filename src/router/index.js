@@ -57,7 +57,7 @@ const routes = [
     meta: { requiresAuth: true }
   },
   {
-    path: '/shop',
+    path: '/',
     name: 'Shop',
   },
   {

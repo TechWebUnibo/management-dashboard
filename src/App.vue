@@ -59,7 +59,7 @@ export default {
     this.basicNavItems = [
       { id: 1, text: 'Home', link: this.baseUrl, icon: 'home' },
       { id: 2, text: 'Admin Page', link: '/admin', icon: 'user-tie'},
-      { id: 3, text: 'Shop', link: '/shop', icon: 'shopping-cart'}
+      { id: 3, text: 'Shop', link: '/', icon: 'shopping-cart'}
     ]
     this.fullNavItems = this.basicNavItems.concat([
       { id: 4, text: 'Customers', link: this.baseUrl + '/customers', icon: 'users' },
