@@ -16,6 +16,29 @@ import Navbar from '@/components/Navbar.vue'
 import Footer from '@/components/Footer.vue'
 import { refreshPublicKey, isLogged } from "./utility/auth";
 
+import Vue from 'vue'
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faHome } from '@fortawesome/free-solid-svg-icons'
+import { faUserCog } from '@fortawesome/free-solid-svg-icons'
+import { faShoppingCart } from '@fortawesome/free-solid-svg-icons'
+import { faUsers } from '@fortawesome/free-solid-svg-icons'
+import { faUserTie } from '@fortawesome/free-solid-svg-icons'
+import { faAddressCard } from '@fortawesome/free-solid-svg-icons'
+import { faTruck } from '@fortawesome/free-solid-svg-icons'
+import { faBoxOpen } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+
+library.add(faHome)
+library.add(faUserCog)
+library.add(faShoppingCart)
+library.add(faUsers)
+library.add(faAddressCard)
+library.add(faUserTie)
+library.add(faTruck)
+library.add(faBoxOpen)
+
+Vue.component('font-awesome-icon', FontAwesomeIcon)
+
 export default {
   name: 'App',
   components: {
@@ -34,15 +57,15 @@ export default {
     this.authenticated = await isLogged()
     await refreshPublicKey()
     this.basicNavItems = [
-      { id: 1, text: 'Home', link: this.baseUrl },
-      { id: 2, text: 'Admin Page', link: '/admin'},
-      { id: 3, text: 'Shop', link: '/shop'}
+      { id: 1, text: 'Home', link: this.baseUrl, icon: 'home' },
+      { id: 2, text: 'Admin Page', link: '/admin', icon: 'user-tie'},
+      { id: 3, text: 'Shop', link: '/shop', icon: 'shopping-cart'}
     ]
     this.fullNavItems = this.basicNavItems.concat([
-      { id: 4, text: 'Customers', link: this.baseUrl + '/customers'},
-      { id: 5, text: 'Rental', link: this.baseUrl +  '/rentals' } ,
-      { id: 6, text: 'Staff', link: this.baseUrl +  '/staff'},
-      { id: 7, text: 'Products', link: this.baseUrl +  '/products' }
+      { id: 4, text: 'Customers', link: this.baseUrl + '/customers', icon: 'users' },
+      { id: 5, text: 'Rental', link: this.baseUrl +  '/rentals', icon: 'box-open'} ,
+      { id: 6, text: 'Staff', link: this.baseUrl +  '/staff', icon: 'address-card'},
+      { id: 7, text: 'Products', link: this.baseUrl +  '/products', icon: 'truck' }
     ])
   },
 }
