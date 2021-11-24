@@ -1,7 +1,7 @@
 <template>
     <nav class="nav">
         <a class="navbar-brand" href="#">
-            <img src="../assets/logo.png" alt="Company Logo" width="130" height="40">
+            <img src="../assets/logo.png" alt="Company Logo" width="150" height="40">
         </a>
         <ul id='collapseItems'>
             <NavItem :showIcon="false"  v-for='navItem in navItems' :key='navItem.id' :navItem='navItem' />

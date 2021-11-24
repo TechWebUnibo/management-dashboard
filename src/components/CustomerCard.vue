@@ -28,7 +28,7 @@
      </div>
   </div>
     <div class="card-footer bg-transparent">
-        <router-link :to="{ name: 'Rentals', params: {query: {filters: {customer: customer._id}, message: `Rentals made by ${customer.username}`} } }" class="btn btn-primary mt-4">Show rentals</router-link>
+        <router-link v-if="customer.rentInfo.total" :to="{ name: 'Rentals', query: {customer: customer._id} }" class="btn btn-primary mt-4">Show rentals</router-link>
     </div>
 </div>
 

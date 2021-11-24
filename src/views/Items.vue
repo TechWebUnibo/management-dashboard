@@ -1,7 +1,7 @@
 <template>
     <div id="Products">
         <h1>Items charts</h1>
-        <h2 v-if="typeof items === 'undefined'">This page shoul be visited only with the proper links</h2>
+        <h2 v-if="typeof items === 'undefined' && isLoaded">This page shoul be visited only with the proper links</h2>
         <div v-if="typeof items !== 'undefined'" >
             <div class="row mt-5">
                 <BarChart :aria-label="chart.title" role="figure" class="col-lg-6" v-for="chart in charts" :key='chart.title' :chartdata="chart.chardata" :labels="chart.labels" :title="chart.title" :options="chartOptions"/>
@@ -67,14 +67,12 @@ export default {
         ItemCard,
         PieChart
     },
-    props:{
-        items: []
-    },
     data: function(){
         return {
             filtered: [],
             charts: [],
             pieChart: {},
+            items: [],
             search: '',
             condition: 'All condition',
             order: 'Choose...',
@@ -92,6 +90,7 @@ export default {
         }
     },
     async created(){
+        this.items = await this.getItems({type: this.$route.query.type})
         if(typeof this.items !== 'undefined'){
             let rentals = await this.getRentals()
             let invoices = await this.getInvoices()
@@ -101,6 +100,7 @@ export default {
             this.pieChart = this.conditionChart(this.items)
     
             this.filtered = this.items   
+            this.isLoaded = true
         }
     },
     computed: {

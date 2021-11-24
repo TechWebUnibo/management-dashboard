@@ -5,7 +5,7 @@
             <PieChart :aria-label="chart.title" role="figure" class="col-lg-6" v-for="chart in charts" :key='chart.title' :chartdata="chart.chardata" :labels="chart.labels" :title="chart.title" :options="chartOptions"/>
             <BarChart :aria-label="chart.title" role="figure" class="col-lg-6" v-for="chart in charts" :key='chart.title + "-pie"' :chartdata="chart.chardata" :labels="chart.labels" :title="chart.title" :options="chartOptions"/>
         </div>
-            <h2 class="mt-5">{{query.message || 'Rentals'}}</h2>
+            <h2 class="mt-5">Rentals</h2>
             <div class="row">
                 <div class="col-lg-3 pb-2">
                     <label for="searchBar">Filter:</label>
@@ -70,11 +70,6 @@ export default {
         PieChart,
         BarChart
     },
-    props:{
-        query: {
-            default: () => {return {}}
-        }
-    },
     data: function(){
         return {
             rentals: [],
@@ -94,11 +89,14 @@ export default {
             },
             perPage: 4,
             currentPage: 1,
+            query: {}
         }
     },
     async created(){
+        if(this.$route.query)
+            this.query = this.$route.query
         console.log(this.query)
-        this.rentals = await this.getRentals({productName: true, customerName: true, employeeName: true, ...this.query.filters})
+        this.rentals = await this.getRentals({productName: true, customerName: true, employeeName: true, ...this.query})
         this.charts.push(this.stateChart(this.rentals))
         this.filtered = this.rentals
     },

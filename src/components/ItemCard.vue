@@ -10,7 +10,7 @@
         </ul>
     </div>
       <div class="card-footer bg-transparent" v-if="item.rentInfo.total > 0">
-        <router-link :to="{ name: 'Rentals', params: {query: {filters: {products: item._id}, message: `Rentals with ${item.name}`} } }" class="btn btn-primary mt-4">Show rentals</router-link>
+        <router-link :to="{ name: 'Rentals', query: { products: item._id,} }" class="btn btn-primary mt-4">Show rentals</router-link>
     </div>
 </div>
 
