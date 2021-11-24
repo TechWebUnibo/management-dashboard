@@ -57,8 +57,16 @@ const routes = [
     meta: { requiresAuth: true }
   },
   {
+    path: '/admin',
+    beforeEnter() {
+      window.location.href = "https://site202118.tw.cs.unibo.it/admin";
+    }
+  },
+  {
     path: '/',
-    name: 'Shop',
+    beforeEnter() {
+      window.location.href = "https://site202118.tw.cs.unibo.it/";
+    }
   },
   {
     path: '/management-dashboard/about',
