@@ -17,7 +17,7 @@
                 <input class="form-check-input" type="checkbox" @change="changeRole" id="manager_switch" :checked="employee.role === 'manager'">
                 <label class="form-check-label" for="manager_switch">Manager</label>
             </div>
-        <router-link :to="{ name: 'Rentals', query: { employee: employee._id} }" class="btn btn-primary mt-4">Show rentals</router-link>
+        <router-link v-if="employee.rentInfo.total" :to="{ name: 'Rentals', query: { employee: employee._id} }" class="btn btn-primary mt-4">Show rentals</router-link>
     </div>
 </div>
 

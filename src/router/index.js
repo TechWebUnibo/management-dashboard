@@ -59,7 +59,7 @@ const routes = [
   {
     path: '/admin',
     beforeEnter() {
-      window.location.href = "https://site202118.tw.cs.unibo.it/admin";
+      window.location.href = "https://site202118.tw.cs.unibo.it/admin/Home.html";
     }
   },
   {
