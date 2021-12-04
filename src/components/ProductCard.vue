@@ -11,7 +11,7 @@
         <li class="list-group-item">Rented: {{product.rentInfo.total}} times</li>
         <li class="list-group-item">Total turnover: {{product.turnover}}</li>
     </ul>
-    <router-link v-if="product.items.length > 1" :to="{ name: 'Items', query: {type: product._id } }" class="btn btn-primary mt-4">Show items</router-link>
+    <router-link v-if="product.items.length >= 1" :to="{ name: 'Items', query: {type: product._id } }" class="btn btn-primary mt-4">Show items</router-link>
   </div>
 </div>
 
