@@ -12,7 +12,7 @@
         <ul class="list-group list-group-flush">
             <li class="list-group-item">Customer: {{rental.customer}}</li>
             <li class="list-group-item">Operator: {{rental.employee}}</li>
-            <li class="list-group-item">State: {{rental.state}}</li>
+            <li class="list-group-item">State: {{rental.state.replace(/_/, ' ')}}</li>
             <li class="list-group-item">Start date: {{rental.start.split('T')[0]}}</li>
             <li class="list-group-item">End date: {{rental.end.split('T')[0]}}</li>
         </ul>
