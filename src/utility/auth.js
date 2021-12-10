@@ -61,10 +61,10 @@ function setToken(token){
 export function getToken(){
     return localStorage[ACCESS_TOKEN_KEY]
 }
-/*
-function clearToken()  {
+
+export function logout()  {
     localStorage.removeItem(ACCESS_TOKEN_KEY);
-}*/
+}
 
 export async function isLogged(){
     /*

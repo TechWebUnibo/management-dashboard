@@ -1,6 +1,7 @@
 <template>
     <li class="nav-item">
-        <router-link class="nav-link" :to='navItem.link'><font-awesome-icon v-if="showIcon" :icon="navItem.icon" />
+        <button class="btn btn-danger text-center" @click="logoutEvent" v-if="navItem.text === 'Logout'"><font-awesome-icon :icon="navItem.icon" />Logout</button>
+        <router-link v-else class="nav-link" :to='navItem.link'><font-awesome-icon v-if="showIcon" :icon="navItem.icon" />
         {{navItem.text}}</router-link>
     </li>
 </template>
@@ -8,16 +9,28 @@
 
 <script>
 
+import { logout } from '../utility/auth'
+
 export default {
     name: 'NavItem',
     props: {
         navItem: Object,
         showIcon: Boolean
+    },
+    methods: {
+        logoutEvent (){
+            logout()
+            window.location.reload()
+        }
     }
 }
 </script>
 
 <style lang='scss' scoped>
+
+    button {
+        margin-left: 1em;
+    }
     li{
         list-style: none;
     }

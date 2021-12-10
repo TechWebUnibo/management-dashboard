@@ -11,7 +11,7 @@
         </button>
         <div id='sidebar' class="sidebar-hidden">
             <button class="sidebar-toggle" @click="toggleSidebar" aria-controls="sidebar" aria-expanded="true" aria-label="Toggle navigation"><font-awesome-icon :icon="['fas', 'arrow-left']" /><h3>Close</h3></button>
-            <ul class="p-1">
+            <ul class="p-1" @logoutEvent="console.log('sas')">
                 <NavItem :showIcon="true" v-for='navItem in navItems' :key='navItem.id' :navItem='navItem' />
             </ul>
         </div>
@@ -48,7 +48,7 @@ export default {
                     toggle.setAttribute('aria-expanded', false)
                 }
             }
-        }
+        },
     }
 }
 </script>

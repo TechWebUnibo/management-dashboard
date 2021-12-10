@@ -1,6 +1,6 @@
 <template>
 <div id="App">
-    <header>
+    <header @logoutEvent="logout">
       <Navbar :navItems="authenticated ? fullNavItems : basicNavItems"  />
     </header>
     <main class="container">
@@ -14,7 +14,7 @@
 <script>
 import Navbar from '@/components/Navbar.vue'
 import Footer from '@/components/Footer.vue'
-import { refreshPublicKey, isLogged } from "./utility/auth";
+import { refreshPublicKey, isLogged, logout } from "./utility/auth";
 
 import Vue from 'vue'
 import { library } from '@fortawesome/fontawesome-svg-core'
@@ -22,6 +22,7 @@ import { faHome } from '@fortawesome/free-solid-svg-icons'
 import { faUserCog } from '@fortawesome/free-solid-svg-icons'
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons'
 import { faUsers } from '@fortawesome/free-solid-svg-icons'
+import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons'
 import { faUserTie } from '@fortawesome/free-solid-svg-icons'
 import { faAddressCard } from '@fortawesome/free-solid-svg-icons'
 import { faTruck } from '@fortawesome/free-solid-svg-icons'
@@ -36,6 +37,7 @@ library.add(faAddressCard)
 library.add(faUserTie)
 library.add(faTruck)
 library.add(faBoxOpen)
+library.add(faSignOutAlt)
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 
@@ -53,6 +55,12 @@ export default {
         authenticated: false
     }
   },
+  methods: {
+    logout() {
+      logout()
+      this.$router.push(this.baseUrl)
+    }
+  },
   async created() {
     this.authenticated = await isLogged()
     await refreshPublicKey()
@@ -65,7 +73,8 @@ export default {
       { id: 4, text: 'Customers', link: this.baseUrl + '/customers', icon: 'users' },
       { id: 5, text: 'Rental', link: this.baseUrl +  '/rentals', icon: 'box-open'} ,
       { id: 6, text: 'Staff', link: this.baseUrl +  '/staff', icon: 'address-card'},
-      { id: 7, text: 'Products', link: this.baseUrl +  '/products', icon: 'truck' }
+      { id: 7, text: 'Products', link: this.baseUrl +  '/products', icon: 'truck' },
+      { id: 8, text: 'Logout', link: this.baseUrl +  '', icon: 'sign-out-alt' }
     ])
   },
 }
