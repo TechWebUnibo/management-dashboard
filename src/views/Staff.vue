@@ -174,7 +174,12 @@ export default {
                 })
             }
         }
-    }    
+    },  
+    metaInfo() {
+        return { 
+            title: "Staff",
+        }
+    }
 }
 </script>
 

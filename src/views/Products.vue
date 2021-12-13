@@ -181,6 +181,11 @@ export default {
             else if(this.order === 'Turnover')
                 this.products.sort((a, b) => b.turnover - a.turnover)      
             }
+    },
+    metaInfo() {
+        return { 
+            title: "Products",
+        }
     }
 }
 </script>

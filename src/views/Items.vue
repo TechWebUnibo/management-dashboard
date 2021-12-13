@@ -217,6 +217,11 @@ export default {
                 return this.condition === conditionMap[item.condition] || this.condition === 'All condition'
             })
         },
+    },
+    metaInfo() {
+        return { 
+            title: "Items",
+        }
     }
 }
 </script>

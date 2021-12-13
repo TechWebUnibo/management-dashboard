@@ -34,6 +34,11 @@ export default {
         this.cards.forEach(card =>{
             card.link = this.baseUrl + card.link
         })
+    },
+    metaInfo() {
+        return { 
+            title: "Dashboard",
+        }
     }
 }
 </script>

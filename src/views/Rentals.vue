@@ -171,6 +171,11 @@ export default {
             this.state = 'All states'
             this.filter()
         }
+    },
+    metaInfo() {
+        return { 
+            title: "Rentals",
+        }
     }
 }
 </script>

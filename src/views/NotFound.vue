@@ -9,7 +9,15 @@
 </template>
 
 
-
+<script>
+export default {
+    metaInfo() {
+        return { 
+            title: "404 not found",
+        }
+    }
+}
+</script>
 
 
 <style lang="scss" scoped>

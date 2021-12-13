@@ -177,6 +177,11 @@ export default {
                 })
             }
         }
+    },
+    metaInfo() {
+        return { 
+            title: "Customers",
+        }
     }
     
 }

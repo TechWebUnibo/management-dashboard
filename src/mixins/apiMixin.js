@@ -76,6 +76,29 @@ export const apiMixin = {
                 console.log(e)
             }
         },
+        getProduct: async function(id){
+            try{
+                let res = await fetch(this.url + this.productsUrl + '/' + id, {
+                    method: 'GET',
+                    mode: 'cors', // no-cors, *cors, same-origin
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Access-Control-Allow-Origin': '*',
+                        'Authorization': 'Bearer ' + getToken()
+                    },
+                })
+                if(res.status == 200){
+                    res = await res.json()
+                    return res
+                }
+                else{
+                    return []
+                }
+            }
+            catch(e){
+                console.log(e)
+            }
+        },
         getRentals: async function(query){
             if(typeof query != 'undefined'){
                 query = '?' + new URLSearchParams(query).toString()

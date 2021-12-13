@@ -13,6 +13,11 @@ export default {
   components: {
     Login
   }, 
+    metaInfo() {
+      return { 
+          title: "Login",
+      }
+  }
 }
 </script>
 

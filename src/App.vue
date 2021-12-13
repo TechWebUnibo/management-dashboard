@@ -17,6 +17,7 @@ import Footer from '@/components/Footer.vue'
 import { refreshPublicKey, isLogged, logout } from "./utility/auth";
 
 import Vue from 'vue'
+import VueMeta from 'vue-meta'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faHome } from '@fortawesome/free-solid-svg-icons'
 import { faUserCog } from '@fortawesome/free-solid-svg-icons'
@@ -29,6 +30,7 @@ import { faTruck } from '@fortawesome/free-solid-svg-icons'
 import { faBoxOpen } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
+Vue.use(VueMeta)
 library.add(faHome)
 library.add(faUserCog)
 library.add(faShoppingCart)
