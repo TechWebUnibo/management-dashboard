@@ -23,6 +23,13 @@ export default {
   mounted () {
       this.renderChart({
             labels: this.labels,
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        min: 0,
+                    }
+                }]
+            },
             datasets: [{
                 label: this.title,
                 data: this.chartdata,
@@ -35,7 +42,14 @@ export default {
                 ],
             borderWidth: 1
         }]
-      }, this.options)
+      }, { ...this.options, 
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero:true
+                    }
+                }]
+            }})
   }
 }
 
