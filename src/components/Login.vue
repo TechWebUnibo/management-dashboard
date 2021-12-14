@@ -15,7 +15,7 @@
         </div>
         <div class="d-flex">
             <button type="submit" class="btn btn-primary" aria-label="Login" >Login</button>
-            <button type="reset" class="btn btn-danger" aria-label="Reset">Reset</button>
+            <button type="reset" class="btn btn-danger" aria-label="Reset">Cancel</button>
         </div>
         </form>
     </div>

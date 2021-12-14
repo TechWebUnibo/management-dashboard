@@ -20,7 +20,23 @@ export default {
         default: null
     }
   },
+  data: () => {
+      return {
+          colors: []
+      }
+  },
+  methods: {
+    getRandomColor() {
+        var letters = '0123456789ABCDEF'.split('');
+        var color = '#';
+        for (var i = 0; i < 6; i++ ) {
+            color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
+    }
+  },
   mounted () {
+      this.colors = this.chartdata.map(() => this.getRandomColor())
       this.renderChart({
             labels: this.labels,
             scales: {
@@ -39,6 +55,8 @@ export default {
                     '#17A2B8',
                     '#DC3545',
                     '#FFC107',
+                    ...this.colors
+
                 ],
             borderWidth: 1
         }]
