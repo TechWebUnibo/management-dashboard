@@ -29,7 +29,10 @@ jobs:
             scp -r dist/css/management-dashboard antonio.lopez2@lucia.cs.unibo.it:/home/web/site202118/html/public/css/
             scp -r dist/js/management-dashboard antonio.lopez2@lucia.cs.unibo.it:/home/web/site202118/html/public/js/
             scp -r dist/img antonio.lopez2@lucia.cs.unibo.it:/home/web/site202118/html/public/media/img
-
+      - run:
+          name: Update src
+          command: |
+            ssh antonio.lopez2@lucia.cs.unibo.it "bash --login -c 'cd /home/web/site202118/html/src/management-dashboard && git pull' "
 
 workflows:
   version: 2
