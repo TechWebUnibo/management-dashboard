@@ -16,7 +16,7 @@
         <hr>
         <h6>Rent info</h6>
         <li class="list-group-item">Rented: {{prod.rentInfo.total}} times</li>
-        <li class="list-group-item">Total turnover: {{prod.turnover}}</li>
+        <li class="list-group-item">Total turnover: {{prod.turnover}}€</li>
     </ul>
     <router-link v-if="prod.items.length >= 1" :to="{ name: 'Items', query: {type: prod._id } }" class="btn btn-primary mt-4">Show items</router-link>
     <router-link v-if="prod.rentInfo.total >= 1" :to="{ name: 'Rentals', query: {productType: prod._id } }" class="btn btn-primary mt-4">Show rentals</router-link>

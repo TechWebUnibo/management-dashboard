@@ -4,9 +4,9 @@
     <div class="card-body">
         <h5 class="card-title">{{item.name}}</h5>
         <ul class="list-group list-group-flush">
-            <li class="list-group-item active">The item has been rented for {{item.rentInfo.total}} times for a turnover of {{item.turnover}}</li>
+            <li class="list-group-item active">The item has been rented for {{item.rentInfo.total}} times for a turnover of {{item.turnover}}€</li>
             <li class="list-group-item">Condition: {{item.condition}}</li>
-            <li class="list-group-item">Price: {{item.price}}</li>
+            <li class="list-group-item">Price: {{item.price}}€</li>
         </ul>
     </div>
       <div class="card-footer bg-transparent" v-if="item.rentInfo.total > 0">

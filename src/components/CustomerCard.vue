@@ -7,7 +7,7 @@
   <div class="card-body">
     <h5 class="card-title">{{customer.username}}</h5>
     <ul class="list-group list-group-flush">
-        <li class="list-group-item active">The customer has made: {{customer.rentInfo.total}} rentals for a total of {{customer.turnover}} euro</li>
+        <li class="list-group-item active">The customer has made: {{customer.rentInfo.total}} rentals for a total of {{customer.turnover}}€</li>
         <li class="list-group-item">{{customer.rentInfo.not_started}} not started</li>
         <li class="list-group-item">{{customer.rentInfo.in_progress}} in progress</li>
         <li class="list-group-item">{{customer.rentInfo.terminated}} terminated</li>

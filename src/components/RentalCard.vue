@@ -4,7 +4,7 @@
   <div class="card-body">
     <h5 class="card-title">Rental code: {{rental._id}}</h5>
     <ul class="list-group list-group-flush">
-        <li class="list-group-item active">The rental has: {{rental.products.length}} products for a total of {{rental.price}}euro</li>
+        <li class="list-group-item active">The rental has: {{rental.products.length}} products for a total of {{rental.price}}€</li>
         <li v-for="product in rental.products" :key="product" class="list-group-item">{{product}}</li>
     </ul>
     <div class="card-footer bg-transparent border-primary">
