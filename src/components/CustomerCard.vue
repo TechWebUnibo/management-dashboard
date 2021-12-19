@@ -5,7 +5,7 @@
         <img class="card-img-top img-thumbnail"  :src="customer.avatar"  alt="Customer avatar">
     </div>
   <div class="card-body">
-    <h5 class="card-title">{{customer.username}}</h5>
+    <h3 class="card-title">{{customer.username}}</h3>
     <ul class="list-group list-group-flush">
         <li class="list-group-item active">The customer has made: {{customer.rentInfo.total}} rentals for a total of {{customer.turnover}}€</li>
         <li class="list-group-item">{{customer.rentInfo.not_started}} not started</li>
@@ -16,7 +16,7 @@
     </ul>
          <hr>
      <div id='personalInfo'>    
-        <h6>Personal info</h6>
+        <h4>Personal info</h4>
         <ul class="list-group list-group-flush" v-if="customer.address">
             <li class="list-group-item">Lives in: {{customer.address.city }}</li>
             <li class="list-group-item">Zip code: {{customer.address.zip }}</li>

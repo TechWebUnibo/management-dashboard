@@ -2,7 +2,7 @@
 
 <div class="card" style="">
   <div class="card-body">
-    <h5 class="card-title">{{employee.username}}</h5>
+    <h3 class="card-title">{{employee.username}}</h3>
     <ul class="list-group list-group-flush">
         <li class="list-group-item active">The employee has made: {{employee.rentInfo.total}} rentals for a total of {{employee.turnover}}€</li>
         <li class="list-group-item">{{employee.rentInfo.not_started}} not started</li>

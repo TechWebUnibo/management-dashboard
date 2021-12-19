@@ -2,13 +2,13 @@
 
 <div :class="colorState[rental.state]" class="card" style="">
   <div class="card-body">
-    <h5 class="card-title">Rental code: {{rental._id}}</h5>
+    <h3 class="card-title">Rental code: {{rental._id}}</h3>
     <ul class="list-group list-group-flush">
         <li class="list-group-item active">The rental has: {{rental.products.length}} products for a total of {{rental.price}}€</li>
         <li v-for="product in rental.products" :key="product" class="list-group-item">{{product}}</li>
     </ul>
     <div class="card-footer bg-transparent border-primary">
-        <h6>Other info</h6>
+        <h4>Other info</h4>
         <ul class="list-group list-group-flush">
             <li class="list-group-item">Customer: {{rental.customer}}</li>
             <li class="list-group-item">Operator: {{rental.employee}}</li>

@@ -1,9 +1,9 @@
 <template>
 
     <div class="card" >
-        <img class="card-img" :src="require(`@/assets/${card.img}`)" alt="Card image">
+        <img class="card-img" :src="require(`@/assets/${card.img}`)" :alt="card.alt">
         <div class="card-body">
-            <h5 class="card-title">{{card.title}}</h5>
+            <h3 class="card-title">{{card.title}}</h3>
             <p class="card-text">{{card.text}}</p>
             <router-link v-for="link in card.links" :key="link.link" :to="link.link" class="btn btn-primary">{{link.text}}</router-link>            
         </div>

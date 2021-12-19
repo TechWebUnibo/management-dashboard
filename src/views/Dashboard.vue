@@ -20,12 +20,12 @@ export default {
         return {
             baseUrl: '/management-dashboard/',
             cards: [
-                {title: 'Customers', text: 'Show stats about the customers', links: [{link: 'customers', text: 'Show'}], img: 'customers.png'},
-                {title: 'Staff', text: 'Show stats about the staff', links: [{link: 'staff', text: 'Show'},
+                {title: 'Customers', text: 'Show stats about the customers', alt: 'Happy people',links: [{link: 'customers', text: 'Show'}], img: 'customers.png'},
+                {title: 'Staff', text: 'Show stats about the staff', alt: 'Office workers',links: [{link: 'staff', text: 'Show'},
                 {link: 'staffCreation', text: 'Create'}
                 ], img: 'staff.jpg'},
-                {title: 'Rentals', text: 'Show stats about the rentals', links: [{link: 'rentals', text: 'Show'}], img: 'rentals.jpg'},
-                {title: 'Products', text: 'Show stats about the products', links: [{link: 'products', text: 'Show'}], img: 'products.jpg'}
+                {title: 'Rentals', text: 'Show stats about the rentals', alt: 'Graph of rents', links: [{link: 'rentals', text: 'Show'}], img: 'rentals.jpg'},
+                {title: 'Products', text: 'Show stats about the products', alt: 'Box of products',links: [{link: 'products', text: 'Show'}], img: 'products.jpg'}
             ]
         }
     },

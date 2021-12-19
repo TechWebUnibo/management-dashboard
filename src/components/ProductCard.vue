@@ -5,7 +5,7 @@
         <img class="card-img-top"  :src="prod.img"  alt="Product image">
     </div>
   <div class="card-body">
-    <h5 class="card-title">{{prod.name}}</h5>
+    <h3 class="card-title">{{prod.name}}</h3>
     <ul class="list-group list-group-flush">
         <li v-if="prod.items.length >= 1" class="list-group-item active">The product has: {{prod.items.length}} item</li>
         <li v-if="prod.products.length > 1" class="list-group-item active">The bundle contains {{prod.products.length}} products</li>
@@ -14,7 +14,7 @@
             <li :key="p.name" v-for="p in prod.products" class="list-group-item">{{p.name}}</li>
         </ul>
         <hr>
-        <h6>Rent info</h6>
+        <h4>Rent info</h4>
         <li class="list-group-item">Rented: {{prod.rentInfo.total}} times</li>
         <li class="list-group-item">Total turnover: {{prod.turnover}}€</li>
     </ul>
