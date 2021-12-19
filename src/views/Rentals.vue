@@ -1,5 +1,9 @@
 <template>
-    <div id="Rentals">
+<div>
+    <div v-if="!isLoaded" class="d-flex justify-content-center mt-5">
+        <b-spinner label="Spinning"></b-spinner>
+    </div>
+    <div v-else id="Rentals">
         <h1>Rentals charts</h1>
         <div class="row mt-5">
             <PieChart :aria-label="chart.title" role="figure" class="col-lg-6" v-for="chart in charts" :key='chart.title' :chartdata="chart.chardata" :labels="chart.labels" :title="chart.title" :options="chartOptions"/>
@@ -50,6 +54,7 @@
                 aria-controls="my-table"></b-pagination>
         </div>
     </div>
+</div>
 </template>
 
 <script>
@@ -99,6 +104,7 @@ export default {
         this.rentals = await this.getRentals({productName: true, customerName: true, employeeName: true, ...this.query})
         this.charts.push(this.stateChart(this.rentals))
         this.filtered = this.rentals
+        this.isLoaded = true
     },
     computed: {
     rows() {

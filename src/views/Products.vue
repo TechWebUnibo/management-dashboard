@@ -1,5 +1,9 @@
 <template>
-    <div id="Products">
+<div>
+    <div v-if="!isLoaded" class="d-flex justify-content-center mt-5">
+        <b-spinner label="Spinning"></b-spinner>
+    </div>
+    <div v-else id="Products">
         <h1>Products charts</h1>
         <div class="row mt-5">
             <BarChart :aria-label="chart.title" role="figure" class="col-lg-6" v-for="chart in charts" :key='chart.title' :chartdata="chart.chardata" :labels="chart.labels" :title="chart.title" :options="chartOptions"/>
@@ -30,6 +34,7 @@
                 aria-controls="productsContainer"></b-pagination>
         </div> 
     </div>
+</div>
 </template>
 
 <script>
@@ -80,6 +85,7 @@ export default {
         this.charts.push(this.nRentalChart(this.products, rentals))
         this.charts.push(this.turnoverChart(this.products, invoices))
         this.filtered = this.products   
+        this.isLoaded = true
     },
     computed: {
     rows() {

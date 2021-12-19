@@ -93,10 +93,6 @@ export default {
   min-height: 100%;
 }
 
-html, body{
-  min-height: 100%;
-}
-
 h1, h2{
   font-family: $primary-font;
   text-align: center;
@@ -116,7 +112,7 @@ a {
 main{
   margin-top: 1em;
   background-color: white;
-  min-height: 100%;
+  min-height: calc(100vh - 211px - 58px)
 }
 
 canvas{

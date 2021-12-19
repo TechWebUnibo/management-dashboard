@@ -43,7 +43,6 @@ export default {
     bottom: 0;
     width: 100%;
     line-height:40px;
-    height: 100%;
     background-color: $primary-color;
     }
 

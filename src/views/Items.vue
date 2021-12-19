@@ -1,5 +1,9 @@
 <template>
-    <div id="Products">
+<div>
+    <div v-if="!isLoaded" class="d-flex justify-content-center mt-5">
+        <b-spinner label="Spinning"></b-spinner>
+    </div>
+    <div v-else id="Products">
         <h1>Items charts</h1>
         <h2 v-if="typeof items === 'undefined' && isLoaded">This page shoul be visited only with the proper links</h2>
         <div v-if="typeof items !== 'undefined'" >
@@ -47,6 +51,7 @@
             </div> 
         </div>
     </div>
+</div>
 </template>
 
 <script>

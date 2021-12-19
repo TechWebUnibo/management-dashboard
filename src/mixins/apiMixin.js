@@ -30,9 +30,13 @@ export const apiMixin = {
                 return []
             }
         },
-        getStaff: async function(){
+        getStaff: async function(id){
+            let url = this.url + this.staffUrl
+            if(id) {
+                url = url + '/' + id
+            }
             try {
-                let res = await fetch(this.url + this.staffUrl, {
+                let res = await fetch(url, {
                     method: 'GET',
                     mode: 'cors', // no-cors, *cors, same-origin
                     headers: {
@@ -187,6 +191,43 @@ export const apiMixin = {
             }
         },
 
+        createStaff: async function (data) {
+            try {
+                let res = await fetch(this.url + this.staffUrl, {
+                    method: 'POST',
+                    mode: 'cors', // no-cors, *cors, same-origin
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Access-Control-Allow-Origin': '*',
+                        'Authorization': 'Bearer ' + getToken()
+                    },
+                    body: JSON.stringify(data)
+                })
+                return { status: res.status, body: await res.json()}
+            }
+            catch (e) {
+                console.log(e)
+                return {status: 500, body: {} }
+            }
+        },
+        async deleteStaff (id) {
+            try {
+                let res = await fetch(this.url + this.staffUrl + '/' + id, {
+                    method: 'DELETE',
+                    mode: 'cors', // no-cors, *cors, same-origin
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Access-Control-Allow-Origin': '*',
+                        'Authorization': 'Bearer ' + getToken()
+                    }
+                })
+                return { status: res.status, body: await res.json() }
+            }
+            catch (e) {
+                console.log(e)
+                return { status: 500, body: {} }
+            }
+        },
         modifyStaff: async function (id, data) {
             try {
                 let res = await fetch(this.url + this.staffUrl + '/' + id, {
@@ -199,18 +240,12 @@ export const apiMixin = {
                     },
                     body: JSON.stringify(data)
                 })
-                if (res.status == 200) {
-                    res = await res.json()
-                    return res
-                }
-                else {
-                    return []
-                }
+                return { status: res.status, body: await res.json() }
             }
             catch (e) {
                 console.log(e)
+                return { status: 500, body: {} }
             }
         }
-
     }
 }

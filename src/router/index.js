@@ -5,6 +5,8 @@ import Customers from '../views/Customers.vue'
 import Rentals from '../views/Rentals.vue'
 import Products from '../views/Products.vue'
 import Staff from '../views/Staff.vue'
+import StaffCreation from '../views/StaffCreation.vue'
+import StaffModify from '../views/StaffModify.vue'
 import Items from '../views/Items.vue'
 import NotFound from '../views/NotFound.vue'
 import Dashboard from '../views/Dashboard.vue'
@@ -47,6 +49,18 @@ const routes = [
     path: '/management-dashboard/staff',
     name: 'Staff',
     component: Staff,
+    meta: { requiresAuth: true }
+  },
+  {
+    path: '/management-dashboard/staffCreation',
+    name: 'StaffCreation',
+    component: StaffCreation,
+    meta: { requiresAuth: true }
+  },
+  {
+    path: '/management-dashboard/staffModify',
+    name: 'StaffModify',
+    component: StaffModify,
     meta: { requiresAuth: true }
   },
   {

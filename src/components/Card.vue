@@ -5,7 +5,7 @@
         <div class="card-body">
             <h5 class="card-title">{{card.title}}</h5>
             <p class="card-text">{{card.text}}</p>
-            <router-link :to="card.link" class="btn btn-primary">Show</router-link>
+            <router-link v-for="link in card.links" :key="link.link" :to="link.link" class="btn btn-primary">{{link.text}}</router-link>            
         </div>
     </div>
 </template>
@@ -30,5 +30,9 @@ export default {
     }
     img{
         height: 70%;
+    }
+
+    .btn {
+        margin-right: 1em;
     }
 </style>

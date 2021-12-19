@@ -1,5 +1,9 @@
 <template>
-    <div id='Staff' class="container">
+<div>
+    <div v-if="!isLoaded" class="d-flex justify-content-center mt-5">
+        <b-spinner label="Spinning"></b-spinner>
+    </div>
+    <div v-else id='Staff' class="container">
         <h1>Staff charts</h1>
         <div class="row mt-5">
             <BarChart :aria-label="chart.title" role="figure" class="col-lg-6" v-for="chart in charts" :key='chart.title' :chartdata="chart.chardata" :labels="chart.labels" :title="chart.title" :options="chartOptions"/>
@@ -20,7 +24,7 @@
                 </div>
             </div>
         <div v-if="isLoaded" class="cardsContainer" id="staffContainer">
-            <StaffCard v-for="employee in filteredList" :key="employee._id" :employee="employee" />
+            <StaffCard v-for="employee in filteredList" @delete="deleteEmployee" :key="employee._id" :employee="employee" />
         </div> 
             <div class="mt-3" v-if="isLoaded">
                 <b-pagination align="center"
@@ -30,6 +34,7 @@
                     aria-controls="staffContainer"></b-pagination>
             </div>
     </div>
+</div>
 </template>
 
 
@@ -88,6 +93,13 @@ export default {
         }
     },
     methods: {
+        async deleteEmployee(employee) {
+            const { status } = await this.deleteStaff(employee._id)
+            if(status === 200){
+                const index = this.staff.indexOf(employee);
+                this.staff.splice(index, 1);
+            }
+        },
         nRentalChart(staff, rents){
             let chardata = []
             let count = {}
