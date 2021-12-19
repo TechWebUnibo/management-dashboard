@@ -8,7 +8,7 @@
         <div class="row">
             <div class="col">
                 <label for="name" class="form-label">Name</label>
-                <input type="text" class="form-control" placeholder="Name" v-model="data.name" required>
+                <input type="text" id="name" class="form-control" placeholder="Name" v-model="data.name" required>
             </div>
             <div class="col">
                 <label for="surname" class="form-label">Surname</label>
@@ -50,6 +50,7 @@
                     username: undefined,
                     name: undefined,
                     surname: undefined,
+                    password: undefined,
                     role: 'administrator'
                 },
                 modalTitle: '',

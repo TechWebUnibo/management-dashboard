@@ -8,7 +8,7 @@
         <div class="row">
             <div class="col">
                 <label for="name" class="form-label">Name</label>
-                <input type="text" class="form-control" placeholder="Name" v-model="data.name" required>
+                <input type="text" id="name" class="form-control" placeholder="Name" v-model="data.name" required>
             </div>
             <div class="col">
                 <label for="surname" class="form-label">Surname</label>
@@ -17,7 +17,7 @@
         </div>
         <div class="mb-3">
             <label for="password" class="form-label">Password</label>
-            <input type="password" class="form-control" id="password" placeholder="Password" v-model="data.password" required>
+            <input type="password" class="form-control" id="password" placeholder="Password" v-model="password" required>
         </div>
         <div class="form-group">
             <label for="role">Role</label>
@@ -26,7 +26,7 @@
                 <option value="manager">Manager</option>
             </select>
         </div>
-        <button type="button" @click="create" class="btn btn-primary mt-2">Modify</button>
+        <button type="button" @click="modify" class="btn btn-primary mt-2">Modify</button>
 
     <!-- Modal for notification -->
         <b-modal ref="notification" :title="modalTitle" :cancel-disabled="true" :ok-disabled="true">
@@ -52,6 +52,7 @@
                     surname: undefined,
                     role: 'administrator'
                 },
+                password: undefined,
                 modalTitle: '',
                 modalText: ''
             }
@@ -67,8 +68,11 @@
             }
         },
         methods: {
-            async create () {
-                const { status } =  await this.modifyStaff(this.data._id, this.data)
+            async modify () {
+                let newData = this.data
+                if(this.password)
+                    newData.password = this.password
+                const { status } =  await this.modifyStaff(this.data._id, newData)
                 let okVariant = ''
                 if(status === 200){
                     this.modalTitle = 'Employee modified'

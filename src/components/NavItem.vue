@@ -1,5 +1,5 @@
 <template>
-    <li class="nav-item">
+    <li class="nav-item" :aria-current="this.$router.currentRoute === navItem.text">
         <button class="btn btn-danger text-center" @click="logoutEvent" v-if="navItem.text === 'Logout'"><font-awesome-icon :icon="navItem.icon" />Logout</button>
         <router-link v-else class="nav-link" :to='navItem.link'><font-awesome-icon v-if="showIcon" :icon="navItem.icon" />
         {{navItem.text}}</router-link>
@@ -22,6 +22,9 @@ export default {
             logout()
             window.location.reload()
         }
+    },
+    created() {
+        console.log(this.$router.currentRoute)
     }
 }
 </script>

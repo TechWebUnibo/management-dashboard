@@ -15,7 +15,7 @@
                     <input type="text" v-model="search" id="searchBar" class="custom-select" placeholder="Search title.."/>
                 </div>
                 <div class="offset-lg-7 col-lg-2">
-                    <label for="customer_order">Sort</label>
+                    <label for="staff_order">Sort</label>
                         <select class="custom-select" id="staff_order" v-model="order" @change="sortStaff">
                             <option disabled>Choose...</option>
                             <option>Number of rentals</option>

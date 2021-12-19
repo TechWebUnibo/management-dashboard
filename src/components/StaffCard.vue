@@ -13,10 +13,6 @@
     </ul>
   </div>
     <div class="card-footer bg-transparent">
-            <div class="form-check form-switch">
-                <input class="form-check-input" type="checkbox" @change="changeRole" id="manager_switch" :checked="employee.role === 'manager'">
-                <label class="form-check-label" for="manager_switch">Manager</label>
-            </div>
         <router-link v-if="employee.rentInfo.total" :to="{ name: 'Rentals', query: { employee: employee._id} }" class="btn btn-primary mt-4">Show rentals</router-link>
         <router-link :to="{ name: 'StaffModify', query: { employee: employee._id} }" class="btn btn-primary mt-4">Modify</router-link>
         <button v-if="!employee.rentInfo.total" @click="$emit('delete', employee)" class="btn btn-danger mt-4">Delete</button>
@@ -37,11 +33,6 @@ export default {
     },
     props:{
         employee: Object
-    },
-    methods:{
-        async changeRole(){
-            await this.modifyStaff(this.employee._id, {role: this.employee.role === 'manager'? 'administrator' : 'manager'})
-        }
     }
 }
 </script>
